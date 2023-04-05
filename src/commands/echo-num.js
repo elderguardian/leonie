@@ -3,11 +3,11 @@ module.exports = {
     'filter': {
         'arguments': {
             min: 1,
-            type: ['string', 'number'],
+            max: 1,
+            type: ['number'],
         },
     },
     'callback': (client, message, arguments) => {
-        const parsedNumber = parseInt(arguments[1])
-        message.reply(`you entered ${arguments[0]} and the number ${parsedNumber}`)
+        message.reply(`you entered the number ${arguments[0]}`)
     }
 }

@@ -1,8 +1,6 @@
 
 
 const lengthIsOkay = (argumentConfig, arguments) =>  {
-    console.log(argumentConfig, arguments)
-
     const minArguments = argumentConfig.min ?? 0
 
     if (arguments.length < minArguments) {
@@ -14,8 +12,6 @@ const lengthIsOkay = (argumentConfig, arguments) =>  {
     if (!maxArguments) {
         return true
     }
-
-    console.log(maxArguments, arguments.length)
 
     return arguments.length < maxArguments;
 }

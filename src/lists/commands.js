@@ -4,5 +4,7 @@ module.exports = {
             message.reply('pong!')
         }
     },
-    'echo-num': require('../commands/echo-num')
+    'echo-num': require('../commands/echo-num'),
+
+    'weather': require('../commands/weather')
 }
