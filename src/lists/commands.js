@@ -6,5 +6,6 @@ module.exports = {
     },
     'echo-num': require('../commands/echo-num'),
 
-    'weather': require('../commands/weather')
+    'weather': require('../commands/weather'),
+    'math': require('../commands/math')
 }
