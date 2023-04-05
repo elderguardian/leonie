@@ -1,7 +1,8 @@
-
-
 module.exports = {
-    'ping': (client, message, arguments) => {
-        message.reply('pong!')
-    }
+    'ping': {
+        'callback': (client, message, arguments) => {
+            message.reply('pong!')
+        }
+    },
+    'echo-num': require('../commands/echo-num')
 }

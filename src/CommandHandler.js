@@ -1,3 +1,4 @@
+const passesFilter = require('./filter/passesFilter')
 
 class CommandHandler {
 
@@ -15,13 +16,20 @@ class CommandHandler {
         const args = message.content.slice(prefix.length).trim().split(/ +/g)
         const command = args.shift().toLowerCase()
 
-        const callback = client.commands.get(command)
+        const commandObject = client.commands.get(command)
 
-        if (!callback) {
+        if (!commandObject) {
             return
         }
 
-        callback(client, message, args)
+        const filter = commandObject.filter
+
+        if (!passesFilter(filter, args)) {
+            message.reply('Invalid command usage.')
+            return
+        }
+
+        commandObject.callback(client, message, args)
     }
 
 }
