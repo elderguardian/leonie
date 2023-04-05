@@ -1,0 +1,25 @@
+{
+  "name": "leonie",
+  "version": "1.0.0",
+  "description": "A discord bot",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "node ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/elderguardian/leonie.git"
+  },
+  "keywords": [
+    "discord",
+    "bot"
+  ],
+  "author": "elderguardian",
+  "bugs": {
+    "url": "https://github.com/elderguardian/leonie/issues"
+  },
+  "homepage": "https://github.com/elderguardian/leonie#readme",
+  "dependencies": {
+    "discord.js": "^14.9.0"
+  }
+}
