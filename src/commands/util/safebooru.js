@@ -1,5 +1,5 @@
-const fetchImage = require('../foundations/safebooru/fetchImage')
-const sendImageEmbed = require('../foundations/embed/sendImageEmbed')
+const fetchImage = require('../../foundations/safebooru/fetchImage')
+const sendImageEmbed = require('../../foundations/embed/sendImageEmbed')
 
 module.exports = {
     'usage': '<query>',

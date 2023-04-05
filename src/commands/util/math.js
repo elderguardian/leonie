@@ -1,5 +1,5 @@
-const sendTextEmbed = require('../foundations/embed/sendTextEmbed')
-const calculate = require('../foundations/math/calculate')
+const sendTextEmbed = require('../../foundations/embed/sendTextEmbed')
+const calculate = require('../../foundations/math/calculate')
 
 module.exports = {
     'usage': '<problem>',

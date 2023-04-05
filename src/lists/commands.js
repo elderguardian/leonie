@@ -9,13 +9,12 @@ module.exports = {
             message.reply('pong!')
         }
     },
-    'echo-num': require('../commands/echo-num'),
 
     'dick': randomCommand('dick', 25),
     'boob-size': randomCommand('boobs', 8),
     'gay': randomCommand('progress', 100),
 
-    'weather': require('../commands/weather'),
-    'math': require('../commands/math'),
-    'sb': require('../commands/safebooru'),
+    'weather': require('../commands/util/weather'),
+    'math': require('../commands/util/math'),
+    'sb': require('../commands/util/safebooru'),
 }
