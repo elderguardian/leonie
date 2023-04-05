@@ -1,0 +1,10 @@
+{
+  "bot": {
+    "prefix": "!",
+    "token": "",
+    "activity": {
+      "status": "online",
+      "message": "Nocturne Op 9 No 2"
+    }
+  }
+}

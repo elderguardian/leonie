@@ -1,7 +1,8 @@
 
 
 module.exports = {
-    'ready': (bot, event) => {
-        console.log("Logged in!")
+    'ready': (client) => {
+        client.user.setStatus(client.config.bot.activity.status)
+        client.user.setActivity(client.config.bot.activity.message)
     }
 }
