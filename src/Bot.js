@@ -1,5 +1,7 @@
 const { Client, GatewayIntentBits, Partials, Collection} = require('discord.js')
 
+const CommandHandler = require('./CommandHandler')
+
 class Bot {
 
     constructor(config, commands, events) {
@@ -38,32 +40,15 @@ class Bot {
         }
     }
 
-    onMessage(client, message) {
-        const prefix = this.config.bot.prefix;
-
-        if (message.content.indexOf(prefix) !== 0) {
-            return
-        }
-
-        const args = message.content.slice(prefix.length).trim().split(/ +/g)
-        const command = args.shift().toLowerCase()
-
-        const callback = client.commands.get(command)
-
-        if (!callback) {
-            return
-        }
-
-        callback(client, message, args)
-    }
-
     run() {
+        const commandHandler = new CommandHandler();
+
         this.client.config = this.config
         this.loadCommands()
         this.loadEvents()
 
         this.client.on('messageCreate', message => {
-            this.onMessage(this.client, message)
+            commandHandler.handleMessage(this.client, message)
         })
 
         this.client.login(this.config.bot.token).catch(err => {
