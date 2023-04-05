@@ -14,4 +14,5 @@ module.exports = {
 
     'weather': require('../commands/weather'),
     'math': require('../commands/math'),
+    'sb': require('../commands/safebooru'),
 }
