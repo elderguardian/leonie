@@ -2,6 +2,7 @@ const sendTextEmbed = require('../foundations/embed/sendTextEmbed')
 const calculate = require('../foundations/math/calculate')
 
 module.exports = {
+    'usage': '<problem>',
     'filter': {
         'arguments': {
             min: 1,

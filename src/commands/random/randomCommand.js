@@ -3,6 +3,7 @@ const randomResult = require("./randomResult");
 module.exports = (displayType, max) => {
 
     return {
+        'usage': '<mention-or-text>',
         'filter': {
             'arguments': {
                 min: 1,

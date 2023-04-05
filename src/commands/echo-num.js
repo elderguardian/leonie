@@ -1,5 +1,6 @@
 
 module.exports = {
+    'usage': '<number>',
     'filter': {
         'arguments': {
             min: 1,

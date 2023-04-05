@@ -2,6 +2,7 @@ const fetchCities = require('../foundations/weather/fetchCities')
 const sendTextEmbed = require('../foundations/embed/sendTextEmbed')
 
 module.exports = {
+    'usage': '<city> <another-city> ...',
     'filter': {
         'arguments': {
             min: 1,

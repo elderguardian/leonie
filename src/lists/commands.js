@@ -1,6 +1,9 @@
 const randomCommand = require('../commands/random/randomCommand')
 
 module.exports = {
+
+    'help': require('../commands/help'),
+
     'ping': {
         'callback': (client, message, arguments) => {
             message.reply('pong!')
