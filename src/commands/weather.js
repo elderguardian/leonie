@@ -1,5 +1,5 @@
 const fetchCities = require('../foundations/weather/fetchCities')
-const sendEmbed = require('../foundations/embed/sendEmbed')
+const sendTextEmbed = require('../foundations/embed/sendTextEmbed')
 
 module.exports = {
     'filter': {
@@ -9,7 +9,7 @@ module.exports = {
     },
     'callback': (client, message, arguments) => {
         fetchCities(arguments).then(result => {
-            sendEmbed(message, 'weather machine', result.join(' '))
+            sendTextEmbed(message, 'weather machine', result.join(' '))
         }).catch(err => {
             message.reply(`The weather could not be fetched: \`${err.message}\``)
         })

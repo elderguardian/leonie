@@ -21,6 +21,7 @@
   "homepage": "https://github.com/elderguardian/leonie#readme",
   "dependencies": {
     "discord.js": "^14.9.0",
-    "mathjs": "^11.8.0"
+    "mathjs": "^11.8.0",
+    "xml2js": "^0.4.23"
   }
 }

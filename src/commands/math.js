@@ -1,4 +1,4 @@
-const sendEmbed = require('../foundations/embed/sendEmbed')
+const sendTextEmbed = require('../foundations/embed/sendTextEmbed')
 const calculate = require('../foundations/math/calculate')
 
 module.exports = {
@@ -15,7 +15,7 @@ module.exports = {
             let answer = `Problem given: \n\`${problem}\`\n\n`
             answer += `Solution calculated: \n\`${solution}\``
 
-            sendEmbed(message, 'problem solver', answer)
+            sendTextEmbed(message, 'problem solver', answer)
         }).catch(err => {
             message.reply(`Could not solve your problem: ${err.message}`)
         })
