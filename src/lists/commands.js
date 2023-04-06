@@ -17,5 +17,7 @@ module.exports = {
     'math': require('../commands/util/math'),
     'sb': require('../commands/util/safebooru'),
 
-    'purge': require('../commands/mod/purge')
+    'purge': require('../commands/mod/purge'),
+    'ban': require('../commands/mod/ban'),
+    'kick': require('../commands/mod/kick'),
 }
