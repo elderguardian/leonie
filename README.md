@@ -2,6 +2,8 @@
 
 A discord bot which was made for a small community.
 
+rename `config-example.json` to `config.json` and config it
+
 ## Commands
 
 - help: `no arguments`
