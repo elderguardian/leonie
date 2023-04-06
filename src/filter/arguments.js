@@ -1,3 +1,4 @@
+const {arg} = require("mathjs");
 
 
 const lengthIsOkay = (argumentConfig, arguments) =>  {
@@ -32,9 +33,18 @@ const typesAreOkay = (argumentConfig, arguments) => {
         const argument = arguments[i]
         const desiredType = filterTypes[i]
 
-        if (desiredType === 'number' && isNaN(argument)) {
-            return false
+        switch (desiredType) {
+            case 'number':
+                if (isNaN(argument))
+                    return false
+                break
+
+            case 'positive-number':
+                if (isNaN(argument) || parseInt(argument) < 0)
+                    return false
+                break
         }
+
     }
     return true
 }

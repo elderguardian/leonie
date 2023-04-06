@@ -1,7 +1,6 @@
 const randomCommand = require('../commands/random/randomCommand')
 
 module.exports = {
-
     'help': require('../commands/help'),
 
     'ping': {
@@ -17,4 +16,6 @@ module.exports = {
     'weather': require('../commands/util/weather'),
     'math': require('../commands/util/math'),
     'sb': require('../commands/util/safebooru'),
+
+    'purge': require('../commands/mod/purge')
 }
