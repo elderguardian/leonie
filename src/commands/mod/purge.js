@@ -1,4 +1,4 @@
-const {Guild, PermissionsBitField} = require("discord.js");
+const {PermissionsBitField} = require("discord.js");
 
 module.exports = {
     'usage': '<positive-amount>',
@@ -7,22 +7,14 @@ module.exports = {
             min: 1,
             type: ['positive-number']
         },
+        'sender': [
+            PermissionsBitField.Flags.ManageMessages
+        ],
+        'bot': [
+            PermissionsBitField.Flags.ManageMessages
+        ]
     },
     'callback': (client, message, arguments) => {
-
-        const senderPermissions = message.guild.members.resolve(message.author).permissions
-
-        if (!senderPermissions.has(PermissionsBitField.Flags.ManageMessages)) {
-            message.reply('You can\'t use this command.')
-            return
-        }
-
-        const botPermissions = message.guild.members.me.permissions
-
-        if (!botPermissions.has(PermissionsBitField.Flags.ManageMessages)) {
-            return message.reply('I am missing the permissions to manage messages.')
-        }
-
         const amountParsed = parseInt(arguments[0])
 
         message.channel.bulkDelete(amountParsed).then(() => {

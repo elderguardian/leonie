@@ -1,4 +1,4 @@
-const {Guild, PermissionsBitField} = require("discord.js");
+const {PermissionsBitField} = require("discord.js");
 
 module.exports = {
     'usage': '<mention>',
@@ -6,22 +6,14 @@ module.exports = {
         'arguments': {
             min: 1,
         },
+        'sender': [
+            PermissionsBitField.Flags.KickMembers
+        ],
+        'bot': [
+            PermissionsBitField.Flags.KickMembers
+        ]
     },
     'callback': (client, message, [mention, ...reasons]) => {
-
-        const senderPermissions = message.guild.members.resolve(message.author).permissions
-
-        if (!senderPermissions.has(PermissionsBitField.Flags.KickMembers)) {
-            message.reply('You can\'t use this command.')
-            return
-        }
-
-        const botPermissions = message.guild.members.me.permissions
-
-        if (!botPermissions.has(PermissionsBitField.Flags.KickMembers)) {
-            return message.reply('I am missing the permissions to kick members.')
-        }
-
         const memberToKick = message.mentions.members.first()
 
         if (!memberToKick) {

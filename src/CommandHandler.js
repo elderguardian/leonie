@@ -24,8 +24,8 @@ class CommandHandler {
 
         const filter = commandObject.filter
 
-        if (!passesFilter(filter, args)) {
-            message.reply('Invalid command usage.')
+        if (!passesFilter(filter, message, args)) {
+            message.reply('Can not process your request!\nCheck the command usage and your permissions.    ')
             return
         }
 

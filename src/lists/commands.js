@@ -20,4 +20,5 @@ module.exports = {
     'purge': require('../commands/mod/purge'),
     'ban': require('../commands/mod/ban'),
     'kick': require('../commands/mod/kick'),
+    'mute': require('../commands/mod/mute'),
 }
