@@ -18,6 +18,7 @@ rename `config-example.json` to `config.json` and config it
 - weather: `<city> <another-city> ...`
 - math: `<problem>`
 - sb: `<query>`
+- kn: `<query>`
 
 ### moderation
 - purge: `<positive-amount>`
