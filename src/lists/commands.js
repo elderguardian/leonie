@@ -16,6 +16,7 @@ module.exports = {
     'weather': require('../commands/util/weather'),
     'math': require('../commands/util/math'),
     'sb': require('../commands/util/safebooru'),
+    'kn': require('../commands/util/kona'),
 
     'purge': require('../commands/mod/purge'),
     'ban': require('../commands/mod/ban'),
