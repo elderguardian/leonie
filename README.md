@@ -56,7 +56,8 @@ module.exports = {
         //Permissions the bot needs
         'bot': [
             PermissionsBitField.Flags.ManageRoles
-        ]
+        ],
+        'nsfw': true,
     },
     'callback': (client, message, [mention, ...reasons]) => {
         message.reply('Hello World!')

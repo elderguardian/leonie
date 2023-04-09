@@ -24,12 +24,12 @@ class CommandHandler {
 
         const filter = commandObject.filter
 
-        if (!passesFilter(filter, message, args)) {
-            message.reply('Can not process your request!\nCheck the command usage and your permissions.    ')
-            return
+        try {
+            passesFilter(filter, message, args)
+            commandObject.callback(client, message, args)
+        } catch (err) {
+            message.reply(`An error occurred: \`${err.message}\``)
         }
-
-        commandObject.callback(client, message, args)
     }
 
 }

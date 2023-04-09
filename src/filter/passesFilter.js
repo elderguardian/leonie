@@ -3,13 +3,13 @@ const {hasPerms} = require("./permissions");
 
 module.exports = (config, message, arguments) => {
     if (!config) {
-        return true
+        return
     }
 
     const isNsfwCommand = config.nsfw ?? false
 
     if (isNsfwCommand && !message.channel.nsfw) {
-        return false
+        throw new Error('Channel is not NSFW')
     }
 
     const senderFilter = config.sender
@@ -17,7 +17,7 @@ module.exports = (config, message, arguments) => {
         const senderPermissions = message.guild.members.resolve(message.author).permissions
 
         if (!hasPerms(senderPermissions, senderFilter)) {
-            return false
+            throw new Error('Sender is missing permissions.')
         }
     }
 
@@ -26,15 +26,22 @@ module.exports = (config, message, arguments) => {
         const botPermissions = message.guild.members.me.permissions
 
         if (!hasPerms(botPermissions, botFilter)) {
-            return false
+            throw new Error('Bot is missing permissions.')
         }
     }
 
     const argumentConfig = config.arguments
 
     if (!argumentConfig) {
-        return true
+        return
     }
 
-    return lengthIsOkay(argumentConfig, arguments) && typesAreOkay(argumentConfig, arguments)
+    if (!lengthIsOkay(argumentConfig, arguments)) {
+        throw new Error('Invalid amount of arguments.')
+    }
+
+    if (!typesAreOkay(argumentConfig, arguments)) {
+        throw new Error('Argument types are not okay.')
+    }
+
 }
