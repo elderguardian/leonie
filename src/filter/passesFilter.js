@@ -6,6 +6,12 @@ module.exports = (config, message, arguments) => {
         return true
     }
 
+    const isNsfwCommand = config.nsfw ?? false
+
+    if (isNsfwCommand && !message.channel.nsfw) {
+        return false
+    }
+
     const senderFilter = config.sender
     if (senderFilter) {
         const senderPermissions = message.guild.members.resolve(message.author).permissions
