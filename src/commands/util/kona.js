@@ -2,19 +2,14 @@ const fetchImage = require('../../foundations/kona/fetchImage')
 const sendImageEmbed = require('../../foundations/embed/sendImageEmbed')
 
 module.exports = {
-    'usage': '<query>',
+    'usage': '<query> //nsfw channel',
     'filter': {
         'arguments': {
             min: 1,
         },
+        'nsfw': true,
     },
     'callback': (client, message, arguments) => {
-
-        if(!message.channel.nsfw) {
-            message.reply('This command is `nsfw channel only`!')
-            return
-        }
-
         fetchImage(arguments.join(' ')).then(result => {
             sendImageEmbed(message, 'kona machine', result)
         }).catch(err => {

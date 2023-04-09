@@ -18,6 +18,7 @@ rename `config-example.json` to `config.json` and config it
 - weather: `<city> <another-city> ...`
 - math: `<problem>`
 - sb: `<query>`
+- kn: `<query>`
 
 ### moderation
 - purge: `<positive-amount>`
@@ -55,7 +56,8 @@ module.exports = {
         //Permissions the bot needs
         'bot': [
             PermissionsBitField.Flags.ManageRoles
-        ]
+        ],
+        'nsfw': true,
     },
     'callback': (client, message, [mention, ...reasons]) => {
         message.reply('Hello World!')
