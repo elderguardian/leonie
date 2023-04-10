@@ -5,6 +5,7 @@ module.exports = {
     'filter': {
         'arguments': {
             min: 1,
+            max: 2,
         },
         'sender': [
             PermissionsBitField.Flags.BanMembers

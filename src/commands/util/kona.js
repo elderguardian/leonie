@@ -2,7 +2,7 @@ const fetchImage = require('../../foundations/kona/fetchImage')
 const sendImageEmbed = require('../../foundations/embed/sendImageEmbed')
 
 module.exports = {
-    'usage': '<query> //nsfw channel',
+    'usage': '<query>',
     'filter': {
         'arguments': {
             min: 1,
