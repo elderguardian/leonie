@@ -16,7 +16,7 @@ module.exports = {
             let answer = `Problem given: \n\`${problem}\`\n\n`
             answer += `Solution calculated: \n\`${solution}\``
 
-            sendTextEmbed(message, 'problem solver', answer)
+            sendTextEmbed(message.channel, 'problem solver', answer, message.author)
         }).catch(err => {
             message.reply(`Could not solve your problem: ${err.message}`)
         })

@@ -36,7 +36,7 @@ class Bot {
         const eventEntries = Object.entries(this.events)
 
         for (const [event, callback ] of eventEntries) {
-            this.client.on(event, callback)
+            this.client.on(event, callback.bind(null, this.client))
         }
     }
 

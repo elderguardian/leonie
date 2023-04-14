@@ -10,7 +10,7 @@ module.exports = {
     },
     'callback': (client, message, arguments) => {
         fetchImage(arguments.join(' ')).then(result => {
-            sendImageEmbed(message, 'safebooru machine', result)
+            sendImageEmbed(message.channel, 'safebooru machine', result, message.author)
         }).catch(err => {
             message.reply(`The image could not be fetched: \`${err.message}\``)
         })
