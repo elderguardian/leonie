@@ -1,9 +1,14 @@
 const generateEmbed = require('./generateEmbed')
 
-module.exports = (message, title, url) => {
-    message.channel.send({
-        embeds: [
-            generateEmbed(message, title).setImage(url)
-        ]
-    })
+module.exports = (channel, title, url, author = false) => {
+    let baseEmbed = generateEmbed(title)
+
+    if (author) {
+        baseEmbed.setFooter({
+            text: `Requested by ${author.username}`
+        })
+    }
+
+    baseEmbed.setImage(url)
+    channel.send({embeds: [baseEmbed]})
 }

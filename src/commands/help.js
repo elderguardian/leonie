@@ -25,7 +25,7 @@ module.exports = {
                     ? max - (min ?? 0)
                     : 'infinite'
 
-            sendTextEmbed(message, `${wantedCommand} help`,
+            sendTextEmbed(message.channel, `${wantedCommand} help`,
                 `usage: \`${commandMetadata.usage ?? 'none'}\`\n` +
                 `arguments: \`${argumentAmount}\`\n` +
                 `nsfw: \`${commandMetadata.filter.nsfw ? 'yes' : 'no'}\`\n`
@@ -41,7 +41,7 @@ module.exports = {
                 embedString += `\`${commands[i]}: ${metadata[i].usage ?? 'no arguments'}\`\n`
             }
 
-            sendTextEmbed(message, 'command list', embedString)
+            sendTextEmbed(message.channel, 'command list', embedString)
         }
     }
 }
