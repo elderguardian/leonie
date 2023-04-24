@@ -17,6 +17,7 @@ module.exports = {
     'math': require('../commands/util/math'),
     'sb': require('../commands/util/safebooru'),
     'kn': require('../commands/util/kona'),
+    'liyuu': require('../commands/util/liyuu'),
 
     'purge': require('../commands/mod/purge'),
     'ban': require('../commands/mod/ban'),
