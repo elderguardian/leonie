@@ -1,13 +1,15 @@
 const { Client, GatewayIntentBits, Partials, Collection} = require('discord.js')
 
 const CommandHandler = require('./CommandHandler')
+const schedule = require("node-schedule")
 
 class Bot {
 
-    constructor(config, commands, events) {
+    constructor(config, commands, events, schedules) {
         this.config = config
         this.commands = commands
         this.events = events
+        this.schedules = schedules
         this.client = new Client({
             intents: [
                 GatewayIntentBits["DirectMessages"],
@@ -40,12 +42,19 @@ class Bot {
         }
     }
 
+    loadCronJobs() {
+        this.schedules.forEach(jobData => {
+            schedule.scheduleJob(jobData.pattern, jobData.callback)
+        })
+    }
+
     run() {
         const commandHandler = new CommandHandler();
 
         this.client.config = this.config
         this.loadCommands()
         this.loadEvents()
+        this.loadCronJobs()
 
         this.client.on('messageCreate', message => {
             commandHandler.handleMessage(this.client, message)
