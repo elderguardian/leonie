@@ -1,7 +1,7 @@
 const postAiringEmbed = require("../foundations/anime/postAiringEmbed")
 
 module.exports = {
-    'pattern': '0 * * * *',
+    'pattern': '0 */1 * * *',
     'callback': client => {
 
         console.log('1')
