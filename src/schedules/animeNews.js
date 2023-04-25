@@ -1,7 +1,7 @@
 const postAiringEmbed = require("../foundations/anime/postAiringEmbed")
 
 module.exports = {
-    'pattern': '*/5 * * * * *',
+    'pattern': '0 * * * * *',
     'callback': client => {
         const { shows, channelID } = client.config.animeNews
 
