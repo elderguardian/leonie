@@ -19,6 +19,8 @@ module.exports = {
     'kn': require('../commands/util/kona'),
     'liyuu': require('../commands/util/liyuu'),
 
+    'next-episode': require('../commands/anime/nextEpisode'),
+
     'purge': require('../commands/mod/purge'),
     'ban': require('../commands/mod/ban'),
     'kick': require('../commands/mod/kick'),
