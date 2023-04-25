@@ -44,7 +44,9 @@ class Bot {
 
     loadCronJobs() {
         this.schedules.forEach(jobData => {
-            schedule.scheduleJob(jobData.pattern, jobData.callback)
+            schedule.scheduleJob(jobData.pattern, () => {
+                jobData.callback(this.client)
+            })
         })
     }
 
