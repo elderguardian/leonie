@@ -14,5 +14,9 @@
       "welcome": "Welcome ${mention}!",
       "goodbye": "**${name-tag}** just left or was kicked."
     }
+  },
+  "animeNews": {
+    "shows": [ ],
+    "channelID": ""
   }
 }
