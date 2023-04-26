@@ -11,9 +11,6 @@ module.exports = (animeName, channel, onlyIfSoon = false) => {
         }
 
         const title = jsonData['title']
-
-        console.log(title)
-
         const animeTitle = `${title['romaji']} / ${title['english']} / ${title['native']}`
 
         const airingDate = new Date(nextEpisode['airingAt']).toDateString()
