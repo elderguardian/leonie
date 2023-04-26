@@ -20,6 +20,7 @@ module.exports = {
     'liyuu': require('../commands/util/liyuu'),
 
     'next-episode': require('../commands/anime/nextEpisode'),
+    'anime': require('../commands/anime/anime'),
 
     'purge': require('../commands/mod/purge'),
     'ban': require('../commands/mod/ban'),
