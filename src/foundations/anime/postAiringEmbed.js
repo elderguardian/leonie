@@ -2,8 +2,8 @@ const getAniListAnime = require("./getAniListAnime")
 const formatDelta = require("../time/formatDelta")
 const generateEmbed = require("../embed/generateEmbed")
 
-module.exports = (animeId, channel, onlyIfSoon = false) => {
-    getAniListAnime(animeId).then(jsonData => {
+module.exports = (animeName, channel, onlyIfSoon = false) => {
+    getAniListAnime(animeName).then(jsonData => {
         const nextEpisode = jsonData['nextAiringEpisode']
 
         if (!nextEpisode) {
@@ -16,7 +16,7 @@ module.exports = (animeId, channel, onlyIfSoon = false) => {
         const airingDate = new Date(nextEpisode['airingAt']).toDateString()
         const airingLeft = formatDelta(nextEpisode['timeUntilAiring'])
 
-        if (onlyIfSoon && airingLeft['hours'] !== 0) {
+        if (onlyIfSoon && airingLeft['hours'] !== 0 && airingLeft['days'] !== 0) {
             return
         }
 
@@ -26,7 +26,7 @@ module.exports = (animeId, channel, onlyIfSoon = false) => {
             + `Time left: \`${airingLeft['days']}d\` \`${airingLeft['hours']}h\` \`${airingLeft['minutes']}m\` \`${airingLeft['seconds']}s\`\n`
 
         const embed = generateEmbed(`Found airing episode`)
-        embed.setURL(`https://anilist.co/anime/${animeId}`)
+        embed.setURL(`https://anilist.co/anime/${jsonData['id']}`)
         embed.setImage(jsonData['bannerImage'])
         embed.setThumbnail(jsonData['coverImage']['large'])
 

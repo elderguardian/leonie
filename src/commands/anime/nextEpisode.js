@@ -8,12 +8,10 @@ module.exports = {
     'filter': {
         'arguments': {
             min: 1,
-            max: 2,
-            type: ['integer']
         },
     },
     'callback': (client, message, arguments) => {
-        const animeId = arguments[0]
-        postAiringEmbed(animeId, message.channel)
+        const animeName = arguments.join(' ')
+        postAiringEmbed(animeName, message.channel)
     }
 }

@@ -1,55 +1,65 @@
-
 const query = `
-query ($id: Int) {
-  Media (id: $id, type: ANIME) {
-    id
-    title {
-      romaji
-      english
-      native
+query ($id: Int, $page: Int, $perPage: Int, $search: String) {
+  Page (page: $page, perPage: $perPage) {
+    pageInfo {
+      total
+      currentPage
+      lastPage
+      hasNextPage
+      perPage
     }
-    startDate {
-      year
-      month
-      day
-    }
-    endDate {
-      year
-      month
-      day
-    }
-    coverImage {
-      large
-      medium
-    }
-    bannerImage
-    format
-    type
-    status
-    episodes
-    chapters
-    volumes
-    season
-    description
-    averageScore
-    meanScore
-    genres
-    synonyms
-    nextAiringEpisode {
-      airingAt
-      timeUntilAiring
-      episode
+    media (id: $id, search: $search) {
+      id
+      title {
+        romaji
+        english
+        native
+      }
+      startDate {
+        year
+        month
+        day
+      }
+      endDate {
+        year
+        month
+        day
+      }
+      coverImage {
+        large
+        medium
+      }
+      bannerImage
+      format
+      type
+      status
+      episodes
+      chapters
+      volumes
+      season
+      description
+      averageScore
+      meanScore
+      genres
+      synonyms
+      nextAiringEpisode {
+        airingAt
+        timeUntilAiring
+        episode
+      }
     }
   }
 }
 `;
 
-const getAniListAnime = async (id) => {
+const getAniListAnime = async name => {
     const parameterVars = {
-        id: id
+        search: name,
+        page: 1,
+        perPage: 1
     }
 
-    const url = 'https://graphql.anilist.co/anime/search'
+    const url = 'https://graphql.anilist.co'
     const options = {
         method: 'POST',
         headers: {
@@ -70,7 +80,14 @@ const getAniListAnime = async (id) => {
             throw new Error('AniList API Response was not okay!')
         }
 
-        return (await response.json())['data']['Media']
+        const jsonData = await response.json()
+        const mediaData = jsonData['data']['Page']['media']
+
+        if (!mediaData || mediaData.length <= 0) {
+            throw new Error('Could not find an anime with that name.')
+        }
+
+        return mediaData[0]
     } catch (err) {
         throw new Error(`Could not fetch the AniList API: ${err.message}`)
     }
