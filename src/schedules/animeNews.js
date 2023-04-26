@@ -14,7 +14,7 @@ module.exports = {
         if (!channel) {
             return
         }
-
+        
         shows.forEach(showName => {
             postAiringEmbed(showName, channel, true)
         })

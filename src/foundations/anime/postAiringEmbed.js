@@ -34,6 +34,9 @@ module.exports = (animeName, channel, onlyIfSoon = false) => {
 
         channel.send({embeds: [embed]})
     }).catch(err => {
+        if (onlyIfSoon) {
+            return
+        }
         channel.send(`Error while fetching anime: ${err.message}`)
     })
 }
