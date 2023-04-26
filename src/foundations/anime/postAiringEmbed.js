@@ -16,7 +16,7 @@ module.exports = (animeName, channel, onlyIfSoon = false) => {
         const airingDate = new Date(nextEpisode['airingAt']).toDateString()
         const airingLeft = formatDelta(nextEpisode['timeUntilAiring'])
 
-        if (onlyIfSoon && airingLeft['hours'] !== 0 && airingLeft['days'] !== 0) {
+        if (onlyIfSoon && (airingLeft['hours'] !== 0 || airingLeft['days'] !== 0)) {
             return
         }
 
