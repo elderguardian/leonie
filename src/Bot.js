@@ -5,7 +5,7 @@ const schedule = require("node-schedule")
 
 class Bot {
 
-    constructor(config, commands, events, schedules) {
+    constructor(config, db, commands, events, schedules) {
         this.config = config
         this.commands = commands
         this.events = events
@@ -23,6 +23,8 @@ class Bot {
             ],
             partials: [Partials.Message, Partials.Channel, Partials.Reaction],
         })
+
+        this.client.db = db
     }
 
     loadCommands() {

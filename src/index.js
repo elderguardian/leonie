@@ -5,6 +5,13 @@ const commands = require('./lists/commands')
 const events = require('./lists/events')
 const schedules = require('./lists/schedules')
 
-const bot = new Bot(config, commands, events, schedules)
+const {init} = require('./foundations/mongo/database')
 
-bot.run()
+init(config.mongo.url, (db, err) => {
+    if (!db || err) {
+        throw new Error(`Could not connect to database: ${err.message}`)
+    }
+
+    const bot = new Bot(config, db, commands, events, schedules)
+    bot.run()
+})

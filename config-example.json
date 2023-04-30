@@ -1,4 +1,7 @@
 {
+  "mongo": {
+    "url": ""
+  },
   "bot": {
     "prefix": "$",
     "token": "",
