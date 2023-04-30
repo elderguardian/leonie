@@ -1,5 +1,5 @@
 const {PermissionsBitField} = require("discord.js");
-const {addShow, getShows, removeShow} = require("../../foundations/mongo/guildManager");
+const {addShow, getShows, removeShow, setNewsChannel} = require("../../foundations/mongo/guildManager");
 
 module.exports = {
     'usage': '<operation>',
@@ -41,8 +41,24 @@ module.exports = {
                     message.channel.send(`Error while fetching shows: ${err.message}`)
                 })
                 break
+            case 'set-channel':
+                const channel = message.mentions.channels.first()
+
+                if (!channel) {
+                    message.channel.send('Please mention a channel.')
+                    return
+                }
+
+                const channelId = channel.id
+
+                setNewsChannel(mongoDb, guildId, channelId).then(() => {
+                    message.channel.send(`News channel was set to \`${channel.name}\`.`)
+                }).catch(err => {
+                    message.channel.send(`Error while setting channel: ${err.message}`)
+                })
+                break
             default:
-                message.channel.send('This argument is invalid. Valid arguments are `add`, `remove` and `ls`')
+                message.channel.send('This argument is invalid. Valid arguments are `add`, `remove`, `ls` and `set-channel`')
                 break
 
         }
