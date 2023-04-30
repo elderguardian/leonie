@@ -12,6 +12,7 @@ module.exports = {
 
             if (
                 !guild
+                || !guild['anime_news_shows']
                 || guild['anime_news_shows'].length <= 0
                 || !guild['anime_news_channel']
                 || !guild['anime_news_role']
@@ -24,7 +25,7 @@ module.exports = {
 
             const channel = client.channels.cache.get(channelID)
 
-            if (!channel || shows.length <= 0) {
+            if (!channel || !shows || shows.length <= 0) {
                 return
             }
 
