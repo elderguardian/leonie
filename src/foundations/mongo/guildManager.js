@@ -68,9 +68,27 @@ const getShows = async (mongoDb, guildId) => {
 
 }
 
+const setNewsChannel = async (mongoDb, guildId, channelId) => {
+
+    if (!channelId || channelId === '') {
+        throw new Error('Channel id can not be empty.')
+    }
+
+    const database = mongoDb.db('leonie')
+    const guilds = database.collection('guilds')
+
+    guilds.updateOne({discord_id: guildId}, {
+        $set: {
+            anime_news_channel: channelId,
+        },
+    })
+
+}
+
 module.exports = {
     registerGuild,
     addShow,
     removeShow,
     getShows,
+    setNewsChannel,
 }
