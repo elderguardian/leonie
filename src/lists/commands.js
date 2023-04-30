@@ -1,4 +1,5 @@
 const randomCommand = require('../commands/random/randomCommand')
+const {re} = require("mathjs");
 
 module.exports = {
     'help': require('../commands/help'),
@@ -8,6 +9,8 @@ module.exports = {
             message.reply('pong!')
         }
     },
+
+    'register-guild': require('../commands/mod/register-guild'),
 
     'dick': randomCommand('dick', 25),
     'boob-size': randomCommand('boobs', 8),
@@ -21,6 +24,7 @@ module.exports = {
 
     'next-episode': require('../commands/anime/nextEpisode'),
     'anime': require('../commands/anime/anime'),
+    'anime-news': require('../commands/anime/news'),
 
     'purge': require('../commands/mod/purge'),
     'ban': require('../commands/mod/ban'),
