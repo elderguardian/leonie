@@ -1,4 +1,3 @@
-const randomCommand = require('../commands/random/randomCommand')
 const {re} = require("mathjs");
 
 module.exports = {
@@ -11,10 +10,6 @@ module.exports = {
     },
 
     'register-guild': require('../commands/mod/register-guild'),
-
-    'dick': randomCommand('dick', 25),
-    'boob-size': randomCommand('boobs', 8),
-    'gay': randomCommand('progress', 100),
 
     'weather': require('../commands/util/weather'),
     'math': require('../commands/util/math'),
