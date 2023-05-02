@@ -2,7 +2,6 @@ const fetchImage = require('../../foundations/api/fetchLiyuuImage')
 const sendImageEmbed = require('../../foundations/embed/sendImageEmbed')
 
 module.exports = {
-    'usage': 'no arguments',
     'filter': {
         'arguments': {
             max: 1,

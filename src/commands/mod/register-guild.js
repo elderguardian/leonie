@@ -2,7 +2,6 @@ const {PermissionsBitField} = require("discord.js");
 const {registerGuild} = require("../../foundations/mongo/guildManager");
 
 module.exports = {
-    'usage': '',
     'filter': {
         'arguments': {
             max: 1,

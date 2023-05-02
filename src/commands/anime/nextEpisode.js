@@ -1,7 +1,7 @@
 const postAiringEmbed = require("../../foundations/anime/postAiringEmbed")
 
 module.exports = {
-    'usage': '<id>',
+    'usage': '<name>',
     'filter': {
         'arguments': {
             min: 1,

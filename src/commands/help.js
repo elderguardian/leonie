@@ -1,6 +1,7 @@
-const sendTextEmbed = require('../foundations/embed/sendTextEmbed')
+const generateEmbed = require('../foundations/embed/generateEmbed')
 
 module.exports = {
+    'usage': '<command>',
     'filter': {
         'arguments': {
             max: 2,
@@ -10,7 +11,6 @@ module.exports = {
         const wantedCommand = arguments[0]
 
         if (wantedCommand) {
-
             const commandMetadata = client.commands.get(wantedCommand)
 
             if (!commandMetadata) {
@@ -18,29 +18,48 @@ module.exports = {
                 return
             }
 
-            const { min, max } = commandMetadata.filter.arguments
+            const {min, max} = commandMetadata.filter.arguments
 
             const argumentAmount = max ?? false
-                    ? max - (min ?? 0)
-                    : 'infinite'
+                ? max - (min ?? 0)
+                : 'infinite'
 
-            sendTextEmbed(message.channel, `${wantedCommand} help`,
-                `usage: \`${commandMetadata.usage ?? 'none'}\`\n` +
-                `arguments: \`${argumentAmount}\`\n` +
-                `nsfw: \`${commandMetadata.filter.nsfw ? 'yes' : 'no'}\`\n`
-            )
 
+            const embed = generateEmbed(`Details for command: ${wantedCommand}`)
+                .addFields(
+                    {
+                        name: 'Usage',
+                        value: commandMetadata.usage,
+                        inline: true,
+                    }, {
+                        name: 'Arguments',
+                        value: `${argumentAmount}`,
+                        inline: true,
+                    }, {
+                        name: 'NSFW',
+                        value: commandMetadata.filter.nsfw ? 'yes' : 'no',
+                        inline: true,
+                    },
+                )
+
+            message.channel.send({embeds: [embed]})
 
         } else {
+            const embed = generateEmbed('List of valid commands with usage.')
+            embed.setDescription('For more details add a command name as a parameter.')
+
             const commands = [...client.commands.keys()]
             const metadata = [...client.commands.values()]
-            let embedString = ''
 
             for (let i = 0; i < commands.length; i++) {
-                embedString += `\`${commands[i]}: ${metadata[i].usage ?? 'no arguments'}\`\n`
+                embed.addFields({
+                    name: commands[i],
+                    value: metadata[i].usage ? metadata[i].usage : 'no arguments',
+                    inline: true,
+                })
             }
 
-            sendTextEmbed(message.channel, 'command list', embedString)
+            message.channel.send({embeds: [embed]})
         }
     }
 }
