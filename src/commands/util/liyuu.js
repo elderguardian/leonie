@@ -2,7 +2,7 @@ const fetchImage = require('../../foundations/liyuu/fetchImage')
 const sendImageEmbed = require('../../foundations/embed/sendImageEmbed')
 
 module.exports = {
-    'usage': '',
+    'usage': 'no arguments',
     'filter': {
         'arguments': {
             max: 1,
