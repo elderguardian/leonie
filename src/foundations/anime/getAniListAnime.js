@@ -53,6 +53,11 @@ query ($id: Int, $page: Int, $perPage: Int, $search: String) {
 `;
 
 const getAniListAnime = async name => {
+
+    if (!name || name === '') {
+        throw new Error('Name can not be empty.')
+    }
+
     const parameterVars = {
         search: name,
         page: 1,
