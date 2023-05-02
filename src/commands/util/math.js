@@ -6,7 +6,6 @@ module.exports = {
     'filter': {
         'arguments': {
             min: 1,
-            type: ['string']
         },
     },
     'callback': (client, message, arguments) => {

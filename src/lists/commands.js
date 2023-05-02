@@ -1,4 +1,3 @@
-const {re} = require("mathjs");
 
 module.exports = {
     'help': require('../commands/help'),

@@ -1,5 +1,4 @@
 const sendTextEmbed = require('../foundations/embed/sendTextEmbed')
-const {arg} = require("mathjs");
 
 module.exports = {
     'filter': {
