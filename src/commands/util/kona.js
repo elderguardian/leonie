@@ -1,4 +1,4 @@
-const fetchImage = require('../../foundations/kona/fetchImage')
+const fetchImage = require('../../foundations/api/fetchKonachan')
 const sendImageEmbed = require('../../foundations/embed/sendImageEmbed')
 
 module.exports = {

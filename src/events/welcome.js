@@ -1,5 +1,4 @@
 const sendTextEmbed = require("../foundations/embed/sendTextEmbed");
-const {mod} = require("mathjs");
 
 const add = (client, member) => {
 

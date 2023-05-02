@@ -1,4 +1,4 @@
-const fetchImage = require('../../foundations/safebooru/fetchImage')
+const fetchImage = require('../../foundations/api/fetchSafebooru')
 const sendImageEmbed = require('../../foundations/embed/sendImageEmbed')
 
 module.exports = {
