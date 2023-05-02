@@ -1,71 +1,13 @@
 # leonie.js
+A discord bot made for a small community.
 
-A discord bot which was made for a small community.
-
-rename `config-example.json` to `config.json` and config it
-
-## Commands
-
-- help: `no arguments`
-- ping: `no arguments`
-
-### fun
-- dick: `<mention-or-text>`
-- boob-size: `<mention-or-text>`
-- gay: `<mention-or-text>`
-
-### useful
-- weather: `<city> <another-city> ...`
-- math: `<problem>`
-- sb: `<query>`
-- kn: `<query>`
-
-### moderation
-- purge: `<positive-amount>`
-- ban: `<mention>`
-- kick: `<mention>`
-- mute: `<mention>`
-
+## Features
+A full list with all commands and events can be found in `src/lists`
 
 ## Development
 
-1. `git clone` the repo
+1. `git clone` the repository
 2. run `npm i`
-3. now start it `nodemon src/index.js`
-
-### Creating a command
-
-Just create a file in the `commands` folder or a sub-folder
-
-```js
-const {PermissionsBitField} = require("discord.js");
-
-module.exports = {
-    'usage': '<mention>',
-    'filter': {
-        //Rules for arguments
-        'arguments': {
-            min: 1,
-            max: 2,
-            type: ['number', 'positive-number']
-        },
-        //Permissions the sender needs
-        'sender': [
-            PermissionsBitField.Flags.ManageRoles
-        ],
-        //Permissions the bot needs
-        'bot': [
-            PermissionsBitField.Flags.ManageRoles
-        ],
-        'nsfw': true,
-    },
-    'callback': (client, message, [mention, ...reasons]) => {
-        message.reply('Hello World!')
-    }
-}
-
-```
-
-Just leave the filters empty if you do not need them.
-
-Add the command in `lists/commands.js` after implementing the logic
+3. move `config-example.json` to `config.json`
+4. configure `config.json`
+5. run the bot with `nodemon src/`
