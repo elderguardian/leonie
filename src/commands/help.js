@@ -29,7 +29,7 @@ module.exports = {
                 .addFields(
                     {
                         name: 'Usage',
-                        value: commandMetadata.usage,
+                        value: commandMetadata.usage ? commandMetadata.usage : 'no arguments',
                         inline: true,
                     }, {
                         name: 'Arguments',
