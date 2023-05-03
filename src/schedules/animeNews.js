@@ -15,7 +15,6 @@ module.exports = {
                 || !guild['anime_news_shows']
                 || guild['anime_news_shows'].length <= 0
                 || !guild['anime_news_channel']
-                || !guild['anime_news_role']
             ) {
                 return
             }
