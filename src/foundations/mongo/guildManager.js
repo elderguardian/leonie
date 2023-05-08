@@ -65,7 +65,14 @@ const getShows = async (mongoDb, guildId) => {
     }
 
     return shows
+}
 
+const getNewsChannel = async (mongoDb, guildId) => {
+    const database = mongoDb.db('leonie')
+    const guilds = database.collection('guilds')
+
+    const guild = await getGuildOrError(guilds, guildId)
+    return guild['anime_news_channel']
 }
 
 const setNewsChannel = async (mongoDb, guildId, channelId) => {
@@ -91,4 +98,5 @@ module.exports = {
     removeShow,
     getShows,
     setNewsChannel,
+    getNewsChannel,
 }
