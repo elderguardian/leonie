@@ -13,7 +13,8 @@ module.exports = (animeName, channel, onlyIfSoon = false) => {
         const title = jsonData['title']
         const animeTitle = `${title['romaji']} / ${title['english']} / ${title['native']}`
 
-        const airingDate = new Date(nextEpisode['airingAt']).toDateString()
+        const airingDateUnixInSec = nextEpisode['airingAt']
+        const airingDate = new Date(airingDateUnixInSec * 1000).toDateString()
         const airingLeft = formatDelta(nextEpisode['timeUntilAiring'])
 
         if (onlyIfSoon && (airingLeft['hours'] !== 0 || airingLeft['days'] !== 0)) {
