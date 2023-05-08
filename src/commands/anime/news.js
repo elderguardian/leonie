@@ -1,5 +1,5 @@
 const {PermissionsBitField} = require("discord.js");
-const {addShow, getShows, removeShow, setNewsChannel} = require("../../foundations/mongo/guildManager");
+const {addShow, getShows, removeShow, setNewsChannel, getNewsChannel} = require("../../foundations/mongo/guildManager");
 const getAniListAnime = require("../../foundations/anime/getAniListAnime");
 const parseTitle = require('../../foundations/anime/parseTitle')
 
@@ -49,6 +49,24 @@ const listOperation = (client, message, show) => {
     })
 }
 
+const getChannelOperation = (client, message) => {
+    const mongoDb = client.db
+    const guildId = message.guild.id
+
+    getNewsChannel(mongoDb, guildId).then(channelId => {
+        const channel = client.channels.cache.get(channelId)
+
+        if (!channel) {
+            message.channel.send('The channel was once set but it seems like it got deleted.')
+        } else {
+            message.channel.send(`This guilds news channel is <#${channel.id}>.`)
+        }
+
+    }).catch(err => {
+        message.channel.send(`Error while getting channel: ${err.message}`)
+    })
+}
+
 const setChannelOperation = (client, message, show) => {
     const channel = message.mentions.channels.first()
 
@@ -85,6 +103,7 @@ module.exports = {
             case 'remove': removeOperation(client, message, show); break
             case 'ls': listOperation(client, message, show); break
             case 'set-channel': setChannelOperation(client, message, show); break
+            case 'get-channel': getChannelOperation(client, message); break
             default:
                 message.channel.send('Please use a valid argument. Valid arguments are `add`, `remove`,`set-channel` and `ls`')
                 break
