@@ -1,6 +1,6 @@
 const {getShows} = require("../../../foundations/mongo/guildManager")
 
-module.exports = (client, message, show) => {
+module.exports = (client, message) => {
     const mongoDb = client.db
     const guildId = message.guild.id
 

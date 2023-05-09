@@ -99,4 +99,5 @@ module.exports = {
     getShows,
     setNewsChannel,
     getNewsChannel,
+    getGuildOrError,
 }

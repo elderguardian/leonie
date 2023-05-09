@@ -1,6 +1,6 @@
 const {setNewsChannel} = require("../../../foundations/mongo/guildManager")
 
-module.exports = (client, message, show) => {
+module.exports = (client, message) => {
     const channel = message.mentions.channels.first()
 
     if (!channel) {
