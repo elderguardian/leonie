@@ -30,7 +30,7 @@ const remove = (client, member) => {
     }
 
     const goodbyeMessage = client.config.welcome.messages.goodbye
-    const embedText = goodbyeMessage.replace('${name-tag}', `${member.user.username}#${member.user.tag}`)
+    const embedText = goodbyeMessage.replace('${name-tag}', member.user.username)
     sendTextEmbed(channel, `member left: \`${member.user.username}\``, embedText);
 
 }
