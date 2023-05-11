@@ -1,7 +1,7 @@
 const postAiringEmbed = require("../foundations/anime/postAiringEmbed")
 
 module.exports = {
-    'pattern': '0 */1 * * *',
+    'pattern': '50 */1 * * *',
     'callback': async client => {
         const database = client.db.db('leonie')
         const guilds = database.collection('guilds')
