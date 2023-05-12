@@ -1,4 +1,4 @@
-const {setNewsChannel} = require("../../../foundations/mongo/guildManager")
+const {setNewsChannel} = require("../../../../foundations/mongo/guildManager")
 
 module.exports = (client, message) => {
     const channel = message.mentions.channels.first()

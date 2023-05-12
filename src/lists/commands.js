@@ -18,7 +18,7 @@ module.exports = {
 
     'next-episode': require('../commands/anime/nextEpisode'),
     'anime': require('../commands/anime/anime'),
-    'anime-news': require('../commands/anime/news'),
+    'air': require('../commands/anime/airing'),
 
     'purge': require('../commands/mod/purge'),
     'ban': require('../commands/mod/ban'),

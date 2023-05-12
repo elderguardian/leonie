@@ -1,4 +1,4 @@
-const {getNewsChannel} = require("../../../foundations/mongo/guildManager")
+const {getNewsChannel} = require("../../../../foundations/mongo/guildManager")
 
 module.exports = (client, message) => {
     const mongoDb = client.db

@@ -1,4 +1,4 @@
-const {getShows} = require("../../../foundations/mongo/guildManager")
+const {getShows} = require("../../../../foundations/mongo/guildManager")
 
 module.exports = (client, message) => {
     const mongoDb = client.db
