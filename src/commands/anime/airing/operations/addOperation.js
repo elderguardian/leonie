@@ -1,6 +1,6 @@
-const getAniListAnime = require("../../../foundations/anime/getAniListAnime")
-const parseTitle = require("../../../foundations/anime/parseTitle")
-const {addShow} = require("../../../foundations/mongo/guildManager")
+const getAniListAnime = require("../../../../foundations/anime/getAniListAnime")
+const parseTitle = require("../../../../foundations/anime/parseTitle")
+const {addShow} = require("../../../../foundations/mongo/guildManager")
 
 module.exports = async (client, message, show) => {
 

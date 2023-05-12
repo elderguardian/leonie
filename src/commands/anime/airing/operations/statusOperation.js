@@ -1,5 +1,5 @@
-const {getGuildOrError} = require("../../../foundations/mongo/guildManager")
-const sendTextEmbed = require('../../../foundations/embed/sendTextEmbed')
+const {getGuildOrError} = require("../../../../foundations/mongo/guildManager")
+const sendTextEmbed = require('../../../../foundations/embed/sendTextEmbed')
 
 module.exports = (client, message) => {
     const mongoDb = client.db
