@@ -1,4 +1,5 @@
 
+
 const registerGuild = async (guilds, guildId) => {
     const guild = await guilds.findOne({
         discord_id: guildId,
@@ -38,11 +39,25 @@ const updateShow = async (type, mongoDb, guildId, show) => {
     const guild = await getGuildOrError(guilds, guildId)
 
     const updatedData = type === 'push'
-        ? { $push: { anime_news_shows: show }}
+        ? { $addToSet: { anime_news_shows: show }}
         : { $pull: { anime_news_shows: show }}
 
     guilds.updateOne({discord_id: guildId}, updatedData)
 
+}
+
+const showExists = async (mongoDb, guildId, showName) => {
+
+    if (!showName || showName === '') {
+        throw new Error('Show name can not be empty.')
+    }
+
+    const database = mongoDb.db('leonie')
+    const guilds = database.collection('guilds')
+
+    const guild = await getGuildOrError(guilds, guildId)
+
+    return guild['anime_news_shows'].includes(showName)
 }
 
 const addShow = async (mongoDb, guildId, show) => {
@@ -100,4 +115,5 @@ module.exports = {
     setNewsChannel,
     getNewsChannel,
     getGuildOrError,
+    showExists,
 }
