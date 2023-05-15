@@ -1,6 +1,6 @@
 const getAniListAnime = require("../../../../foundations/anime/getAniListAnime")
 const parseTitle = require("../../../../foundations/anime/parseTitle")
-const {addShow} = require("../../../../foundations/mongo/guildManager")
+const {addShow, showExists} = require("../../../../foundations/mongo/guildManager")
 
 module.exports = async (client, message, show) => {
 
@@ -17,6 +17,19 @@ module.exports = async (client, message, show) => {
 
     const mongoDb = client.db
     const guildId = message.guild.id
+
+    try {
+        const alreadyExists = await showExists(mongoDb, guildId, showTitle)
+
+        if (alreadyExists) {
+            message.reply('This has already been added to the guilds list.')
+            return
+        }
+
+    } catch (err) {
+        message.reply(`There was an error validating the existence of your show: ${err.message}`)
+        return
+    }
 
     try {
         await addShow(mongoDb, guildId, showTitle)
