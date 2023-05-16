@@ -1,5 +1,3 @@
-
-
 const registerGuild = async (guilds, guildId) => {
     const guild = await guilds.findOne({
         discord_id: guildId,
@@ -39,8 +37,8 @@ const updateShow = async (type, mongoDb, guildId, show) => {
     const guild = await getGuildOrError(guilds, guildId)
 
     const updatedData = type === 'push'
-        ? { $addToSet: { anime_news_shows: show }}
-        : { $pull: { anime_news_shows: show }}
+        ? {$addToSet: {anime_news_shows: show}}
+        : {$pull: {anime_news_shows: show}}
 
     guilds.updateOne({discord_id: guildId}, updatedData)
 
@@ -82,6 +80,13 @@ const getShows = async (mongoDb, guildId) => {
     return shows
 }
 
+const clearShows = async (mongoDb, guildId) => {
+    const database = mongoDb.db('leonie')
+    const guilds = database.collection('guilds')
+
+    guilds.updateOne({discord_id: guildId}, {$set: {anime_news_shows: []}})
+}
+
 const getNewsChannel = async (mongoDb, guildId) => {
     const database = mongoDb.db('leonie')
     const guilds = database.collection('guilds')
@@ -116,4 +121,5 @@ module.exports = {
     getNewsChannel,
     getGuildOrError,
     showExists,
+    clearShows,
 }
