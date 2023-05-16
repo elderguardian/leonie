@@ -18,7 +18,7 @@ module.exports = {
                 return
             }
 
-            const {min, max} = commandMetadata.filter.arguments
+            const {min, max} = commandMetadata.filter.arguments || {}
 
             const argumentAmount = max ?? false
                 ? max - (min ?? 0)
