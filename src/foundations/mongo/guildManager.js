@@ -80,7 +80,7 @@ const getShows = async (mongoDb, guildId) => {
     return shows
 }
 
-const clearShows = async (mongoDb, guildId) => {
+const clearShows = (mongoDb, guildId) => {
     const database = mongoDb.db('leonie')
     const guilds = database.collection('guilds')
 
