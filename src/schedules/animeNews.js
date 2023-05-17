@@ -1,4 +1,6 @@
 const postAiringEmbed = require("../foundations/anime/postAiringEmbed")
+const getAniListAnime = require("../foundations/anime/getAniListAnime");
+const formatDelta = require("../foundations/time/formatDelta")
 
 module.exports = {
     'pattern': '50 */1 * * *',
@@ -8,7 +10,7 @@ module.exports = {
 
         const findResult = await guilds.find()
 
-        findResult.forEach(guild => {
+        for (const guild of findResult) {
 
             if (
                 !guild
@@ -16,7 +18,7 @@ module.exports = {
                 || guild['anime_news_shows'].length <= 0
                 || !guild['anime_news_channel']
             ) {
-                return
+                continue
             }
 
             const channelID = guild['anime_news_channel']
@@ -25,14 +27,31 @@ module.exports = {
             const channel = client.channels.cache.get(channelID)
 
             if (!channel || !shows || shows.length <= 0) {
-                return
+                continue
             }
 
-            shows.forEach(showName => {
-                postAiringEmbed(showName, channel, true)
-            })
+            for (const showName of shows) {
+                try {
+                    const animeData = await getAniListAnime(showName)
+                    const nextEpisode = animeData['nextAiringEpisode']
 
-        })
+                    if (!nextEpisode) {
+                        continue
+                    }
+
+                    const airingLeft = formatDelta(nextEpisode['timeUntilAiring'])
+
+                    if (airingLeft['hours'] !== 0 || airingLeft['days'] !== 0) {
+                        continue
+                    }
+
+                    postAiringEmbed(animeData, channel)
+                } catch (err) {
+                    channel.send(`Could not post embed for the anime \`${showName}\`: ${err.message}`)
+                }
+            }
+
+        }
     }
 }
 
