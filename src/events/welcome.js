@@ -1,36 +1,62 @@
 const sendTextEmbed = require("../foundations/embed/sendTextEmbed");
+const { getGuildOrNull } = require('../foundations/mongo/guildManager')
 
-const add = (client, member) => {
+const add = async (client, member) => {
 
-    if (member.guild.id !== client.config.welcome.guildID) {
+    const guildId = member.guild.id
+    const database = client.db.db('leonie')
+    const guilds = database.collection('guilds')
+
+    const guild = await getGuildOrNull(guilds, guildId)
+
+    if (!guild) {
         return
     }
 
-    const channel = client.channels.cache.get(client.config.welcome.channelID)
+    const welcomeChannelId = guild['welcome_channel']
+
+    if (!welcomeChannelId) {
+        return
+    }
+
+    const channel = client.channels.cache.get(welcomeChannelId)
 
     if (!channel) {
         return
     }
 
-    const welcomeMessage = client.config.welcome.messages.welcome
+    const welcomeMessage = guild['welcome_message_join'] ?? 'Hey ${mention}!'
     const embedText = welcomeMessage.replace('${mention}', `<@${member.user.id}>`)
+
     sendTextEmbed(channel, `member joined: \`${member.user.username}\``, embedText);
 
 }
 
-const remove = (client, member) => {
-    if (member.guild.id !== client.config.welcome.guildID) {
+const remove = async (client, member) => {
+    const guildId = member.guild.id
+    const database = client.db.db('leonie')
+    const guilds = database.collection('guilds')
+
+    const guild = await getGuildOrNull(guilds, guildId)
+
+    if (!guild) {
         return
     }
 
-    const channel = client.channels.cache.get(client.config.welcome.channelID)
+    const goodbyeChannelId = guild['welcome_channel']
+
+    if (!goodbyeChannelId) {
+        return
+    }
+
+    const channel = client.channels.cache.get(goodbyeChannelId)
 
     if (!channel) {
         return
     }
 
-    const goodbyeMessage = client.config.welcome.messages.goodbye
-    const embedText = goodbyeMessage.replace('${name-tag}', member.user.username)
+    const goodbyeMessage = guild['welcome_message_leave'] ?? '**${name}** just left or was kicked.'
+    const embedText = goodbyeMessage.replace('${name}', member.user.username)
     sendTextEmbed(channel, `member left: \`${member.user.username}\``, embedText);
 
 }
