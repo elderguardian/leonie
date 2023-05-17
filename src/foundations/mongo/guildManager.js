@@ -13,6 +13,14 @@ const registerGuild = async (guilds, guildId) => {
 
 }
 
+const getGuildOrNull = async (guilds, guildId) => {
+    try {
+        return getGuildOrError(guilds, guildId)
+    } catch (err) {
+        return null
+    }
+}
+
 const getGuildOrError = async (guilds, guildId) => {
     const guild = await guilds.findOne({
         discord_id: guildId,
@@ -120,6 +128,7 @@ module.exports = {
     setNewsChannel,
     getNewsChannel,
     getGuildOrError,
+    getGuildOrNull,
     showExists,
     clearShows,
 }
