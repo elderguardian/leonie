@@ -1,4 +1,5 @@
 const postAiringEmbed = require("../../foundations/anime/postAiringEmbed")
+const getAniListAnime = require("../../foundations/anime/getAniListAnime");
 
 module.exports = {
     'usage': '<name>',
@@ -9,6 +10,12 @@ module.exports = {
     },
     'callback': (client, message, arguments) => {
         const animeName = arguments.join(' ')
-        postAiringEmbed(animeName, message.channel)
+
+        getAniListAnime(animeName).then(animeData => {
+            postAiringEmbed(animeData, message.channel)
+        }).catch(err => {
+            message.channel.send(`Could not get this anime: ${err.message}`)
+        })
+
     }
 }
