@@ -10,7 +10,7 @@ module.exports = {
 
         const findResult = await guilds.find()
 
-        for (const guild of findResult) {
+        findResult.forEach(guild => {
 
             if (
                 !guild
@@ -18,7 +18,7 @@ module.exports = {
                 || guild['anime_news_shows'].length <= 0
                 || !guild['anime_news_channel']
             ) {
-                continue
+                return
             }
 
             const channelID = guild['anime_news_channel']
@@ -27,31 +27,30 @@ module.exports = {
             const channel = client.channels.cache.get(channelID)
 
             if (!channel || !shows || shows.length <= 0) {
-                continue
+                return
             }
 
             for (const showName of shows) {
-                try {
-                    const animeData = await getAniListAnime(showName)
+                getAniListAnime(showName).then(animeData => {
                     const nextEpisode = animeData['nextAiringEpisode']
 
                     if (!nextEpisode) {
-                        continue
+                        return
                     }
 
                     const airingLeft = formatDelta(nextEpisode['timeUntilAiring'])
 
                     if (airingLeft['hours'] !== 0 || airingLeft['days'] !== 0) {
-                        continue
+                        return
                     }
 
                     postAiringEmbed(animeData, channel)
-                } catch (err) {
+                }).catch(err => {
                     channel.send(`Could not post embed for the anime \`${showName}\`: ${err.message}`)
-                }
+                })
             }
 
-        }
+        })
     }
 }
 
