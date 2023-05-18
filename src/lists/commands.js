@@ -24,4 +24,5 @@ module.exports = {
     'ban': require('../commands/mod/ban'),
     'kick': require('../commands/mod/kick'),
     'mute': require('../commands/mod/mute'),
+    'welcome': require('../commands/welcome')
 }
