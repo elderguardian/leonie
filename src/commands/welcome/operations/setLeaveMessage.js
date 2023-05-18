@@ -1,14 +1,14 @@
-const {setJoinMessage} = require('../../../foundations/mongo/guildManager')
+const {setLeaveMessage} = require('../../../foundations/mongo/guildManager')
 
 module.exports = async (client, message, arguments) => {
 
-    const newJoinMessage = arguments.join(' ')
+    const newLeaveMessage = arguments.join(' ')
 
     const mongoDb = client.db
     const guildId = message.guild.id
 
-    setJoinMessage(mongoDb, guildId, newJoinMessage).then(() => {
-        message.channel.send('Successfully overwritten your welcome message.')
+    setLeaveMessage(mongoDb, guildId, newLeaveMessage).then(() => {
+        message.channel.send('Successfully overwritten your leave message.')
     }).catch(err => {
         message.reply(`There was an error while overwriting your message: ${err.message}`)
     })
