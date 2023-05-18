@@ -95,12 +95,67 @@ const clearShows = (mongoDb, guildId) => {
     guilds.updateOne({discord_id: guildId}, {$set: {anime_news_shows: []}})
 }
 
+const getWelcomeChannel = async (mongoDb, guildId) => {
+    const database = mongoDb.db('leonie')
+    const guilds = database.collection('guilds')
+
+    const guild = await getGuildOrError(guilds, guildId)
+    return guild['welcome_channel']
+}
+
 const getNewsChannel = async (mongoDb, guildId) => {
     const database = mongoDb.db('leonie')
     const guilds = database.collection('guilds')
 
     const guild = await getGuildOrError(guilds, guildId)
     return guild['anime_news_channel']
+}
+
+const setWelcomeChannel = async (mongoDb, guildId, channelId) => {
+
+    if (!channelId || channelId === '') {
+        throw new Error('Channel id can not be empty.')
+    }
+
+    const database = mongoDb.db('leonie')
+    const guilds = database.collection('guilds')
+
+    guilds.updateOne({discord_id: guildId}, {$set: {welcome_channel: channelId,},})
+
+}
+
+const setLeaveMessage = async (mongoDb, guildId, message) => {
+
+    if (!message || message === '') {
+        throw new Error('Leave message can not be empty.')
+    }
+
+    const database = mongoDb.db('leonie')
+    const guilds = database.collection('guilds')
+
+    guilds.updateOne({discord_id: guildId}, {
+        $set: {
+            welcome_message_leave: message,
+        },
+    })
+
+}
+
+const setJoinMessage = async (mongoDb, guildId, message) => {
+
+    if (!message || message === '') {
+        throw new Error('Join message can not be empty.')
+    }
+
+    const database = mongoDb.db('leonie')
+    const guilds = database.collection('guilds')
+
+    guilds.updateOne({discord_id: guildId}, {
+        $set: {
+            welcome_message_join: message,
+        },
+    })
+
 }
 
 const setNewsChannel = async (mongoDb, guildId, channelId) => {
@@ -127,8 +182,12 @@ module.exports = {
     getShows,
     setNewsChannel,
     getNewsChannel,
+    setWelcomeChannel,
+    getWelcomeChannel,
     getGuildOrError,
     getGuildOrNull,
     showExists,
     clearShows,
+    setJoinMessage,
+    setLeaveMessage,
 }
