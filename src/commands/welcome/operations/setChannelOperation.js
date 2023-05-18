@@ -1,4 +1,4 @@
-const {setNewsChannel} = require("../../../../foundations/mongo/guildManager")
+const {setWelcomeChannel} = require("../../../foundations/mongo/guildManager")
 
 module.exports = (client, message) => {
     const channel = message.mentions.channels.first()
@@ -12,9 +12,9 @@ module.exports = (client, message) => {
     const guildId = message.guild.id
     const channelId = channel.id
 
-    setNewsChannel(mongoDb, guildId, channelId).then(() => {
-        message.channel.send(`News channel was set to \`${channel.name}\`.`)
+    setWelcomeChannel(mongoDb, guildId, channelId).then(() => {
+        message.channel.send(`The welcome channel was set to \`${channel.name}\`.`)
     }).catch(err => {
-        message.channel.send(`Error while setting channel: ${err.message}`)
+        message.channel.send(`Error while setting welcome channel: ${err.message}`)
     })
 }
