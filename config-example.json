@@ -9,13 +9,5 @@
       "status": "online",
       "message": "Nocturne Op 9 No 2"
     }
-  },
-  "welcome": {
-    "guildID": "",
-    "channelID": "",
-    "messages": {
-      "welcome": "Welcome ${mention}!",
-      "goodbye": "**${name-tag}** just left or was kicked."
-    }
   }
 }
