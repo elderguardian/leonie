@@ -202,4 +202,5 @@ module.exports = {
     clearShows,
     setJoinMessage,
     setLeaveMessage,
+    setNewsRole,
 }

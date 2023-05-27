@@ -1,5 +1,5 @@
 const {PermissionsBitField} = require("discord.js")
-const {clearOperation,statusOperation, getChannelOperation, setChannelOperation, listOperation, removeOperation, addOperation} = require("./operationBarrel");
+const {setRole, clearOperation,statusOperation, getChannelOperation, setChannelOperation, listOperation, removeOperation, addOperation} = require("./operationBarrel");
 
 const opCallbacks = {
     'add': addOperation,
@@ -9,6 +9,7 @@ const opCallbacks = {
     'get-channel': getChannelOperation,
     'status': statusOperation,
     'clear': clearOperation,
+    'set-role': setRole
 }
 
 module.exports = {

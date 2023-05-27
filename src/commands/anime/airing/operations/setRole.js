@@ -1,19 +1,19 @@
-const {setNewsChannel} = require("../../../../foundations/mongo/guildManager")
+const {setNewsRole} = require("../../../../foundations/mongo/guildManager")
 
 module.exports = (client, message) => {
-    const channel = message.mentions.channels.first()
+    const role = message.mentions.roles.first()
 
-    if (!channel) {
-        message.channel.send('Please mention a channel.')
+    if (!role) {
+        message.channel.send('Please mention a role.')
         return
     }
 
     const mongoDb = client.db
     const guildId = message.guild.id
-    const channelId = channel.id
+    const roleId = role.id
 
-    setNewsChannel(mongoDb, guildId, channelId).then(() => {
-        message.channel.send(`News channel was set to \`${channel.name}\`.`)
+    setNewsRole(mongoDb, guildId, roleId).then(() => {
+        message.channel.send(`News role was set to \`${role.name}\`.`)
     }).catch(err => {
         message.channel.send(`Error while setting channel: ${err.message}`)
     })
