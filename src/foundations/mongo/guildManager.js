@@ -124,6 +124,18 @@ const setWelcomeChannel = async (mongoDb, guildId, channelId) => {
 
 }
 
+const setNewsRole = async (mongoDb, guildId, roleId) => {
+
+    if (!roleId || roleId === '') {
+        throw new Error('Role id can not be empty.')
+    }
+
+    const database = mongoDb.db('leonie')
+    const guilds = database.collection('guilds')
+
+    guilds.updateOne({discord_id: guildId}, {$set: {anime_news_role: roleId}})
+}
+
 const setLeaveMessage = async (mongoDb, guildId, message) => {
 
     if (!message || message === '') {
