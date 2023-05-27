@@ -1,5 +1,6 @@
 const {PermissionsBitField} = require("discord.js")
-const {clearOperation,statusOperation, getChannelOperation, setChannelOperation, listOperation, removeOperation, addOperation} = require("./operationBarrel");
+const {removeRole, setRole, clearOperation,statusOperation, getChannelOperation, setChannelOperation, listOperation, removeOperation, addOperation} = require("./operationBarrel");
+const {re} = require("mathjs");
 
 const opCallbacks = {
     'add': addOperation,
@@ -9,13 +10,15 @@ const opCallbacks = {
     'get-channel': getChannelOperation,
     'status': statusOperation,
     'clear': clearOperation,
+    'set-role': setRole,
+    'remove-role': removeRole,
 }
 
 module.exports = {
     'usage': '<operation>',
     'filter': {
         'sender': [
-            PermissionsBitField.Flags.Administrator
+            //PermissionsBitField.Flags.Administrator
         ],
     },
     'callback': (client, message, [operation, ...showSplit]) => {
