@@ -44,6 +44,12 @@ module.exports = {
                         return
                     }
 
+                    const roleIdToMention = guild['anime_news_role']
+
+                    if (roleIdToMention) {
+                        channel.send(`<@&${roleIdToMention}>`)
+                    }
+
                     postAiringEmbed(animeData, channel)
                 }).catch(err => {
                     channel.send(`Could not post embed for the anime \`${showName}\`: ${err.message}`)
