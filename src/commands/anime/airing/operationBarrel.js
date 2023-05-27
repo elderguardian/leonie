@@ -6,5 +6,6 @@ module.exports = {
     getChannelOperation: require('./operations/getChannelOperation'),
     statusOperation: require('./operations/statusOperation'),
     clearOperation: require('./operations/clearOperation'),
-    setRole: require('./operations/setRole')
+    setRole: require('./operations/setRole'),
+    removeRole: require('./operations/removeRole')
 }
