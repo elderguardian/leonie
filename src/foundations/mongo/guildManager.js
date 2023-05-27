@@ -128,7 +128,7 @@ const removeNewsRole = async (mongoDb, guildId) => {
     const database = mongoDb.db('leonie')
     const guilds = database.collection('guilds')
 
-    guilds.collection.update({discord_id: guildId}, {$unset: {anime_news_role: 1 }});
+    guilds.updateOne({discord_id: guildId}, {$unset: {anime_news_role: 1 }});
 }
 
 const setNewsRole = async (mongoDb, guildId, roleId) => {
