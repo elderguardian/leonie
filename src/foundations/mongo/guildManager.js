@@ -62,8 +62,13 @@ const showExists = async (mongoDb, guildId, showName) => {
     const guilds = database.collection('guilds')
 
     const guild = await getGuildOrError(guilds, guildId)
+    const shows = guild['anime_news_shows']
 
-    return guild['anime_news_shows'].includes(showName)
+    if (!shows) {
+        return false
+    }
+
+    return shows.includes(showName)
 }
 
 const addShow = async (mongoDb, guildId, show) => {
