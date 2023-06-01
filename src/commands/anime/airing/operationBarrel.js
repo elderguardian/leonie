@@ -7,5 +7,6 @@ module.exports = {
     statusOperation: require('./operations/statusOperation'),
     clearOperation: require('./operations/clearOperation'),
     setRole: require('./operations/setRole'),
-    removeRole: require('./operations/removeRole')
+    removeRole: require('./operations/removeRole'),
+    nextOperation: require('./operations/nextOperation')
 }
