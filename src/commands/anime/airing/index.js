@@ -20,7 +20,7 @@ module.exports = {
     'usage': '<operation>',
     'filter': {
         'sender': [
-            //PermissionsBitField.Flags.Administrator
+            PermissionsBitField.Flags.Administrator
         ],
     },
     'callback': (client, message, [operation, ...showSplit]) => {
