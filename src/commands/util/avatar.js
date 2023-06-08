@@ -4,7 +4,7 @@ module.exports = {
     'usage': 'no arguments\nor multiple mention',
     'callback': (client, message, arguments) => {
 
-        let membersToSend = message.mentions.members.size > 1
+        let membersToSend = message.mentions.members.size >= 1
             ? [...message.mentions.members.map(g => g.user)]
             : [message.author]
 
