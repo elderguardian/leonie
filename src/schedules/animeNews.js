@@ -1,6 +1,8 @@
 const postAiringEmbed = require("../foundations/anime/postAiringEmbed")
 const getAniListAnime = require("../foundations/anime/getAniListAnime");
 const formatDelta = require("../foundations/time/formatDelta")
+const {messageLink} = require("discord.js");
+const {removeShow} = require("../foundations/mongo/guildManager");
 
 module.exports = {
     'pattern': '50 */1 * * *',
@@ -51,6 +53,19 @@ module.exports = {
                     }
 
                     postAiringEmbed(animeData, channel)
+
+                    const currentEpisode = nextEpisode['episode'] ?? 0
+                    const episodeCount = animeData['episodes'] ?? 0
+                    const isLastEpisode = episodeCount && episodeCount >= currentEpisode
+
+                    if (isLastEpisode) {
+                        removeShow(client.db, guild['discord_id'], showName).then(r => {
+                            channel.send('This is the last episode. The show got automatically removed.')
+                        }).catch(r => {
+                            channel.send('This is the last episode. Could not automatically remove the show.')
+                        })
+                    }
+
                 }).catch(err => {
                     channel.send(`Could not post embed for the anime \`${showName}\`: ${err.message}`)
                 })
