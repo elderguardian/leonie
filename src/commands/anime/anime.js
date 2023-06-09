@@ -52,7 +52,7 @@ module.exports = {
             + `\nStart: \`${displayedStartDate}\`\n`
             + `End: \`${displayedEndDate}\`\n`
 
-            + `\nStatus: \`${jsonData['status'].toLowerCase()}\`\n`
+            + `\nStatus: \`${(jsonData['status'] ?? 'unknown').toLowerCase()}\`\n`
             + `Amount of episodes: \`${displayedEpisodeCount}\`\n`
             + `Average Score: \`${jsonData['averageScore']}\`\n`
 
