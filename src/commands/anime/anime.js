@@ -34,6 +34,10 @@ module.exports = {
         const startDate = jsonData['startDate']
         const endDate = jsonData['endDate']
 
+        const displayedStartDate = startDate['day'] && startDate['month'] && startDate['year']
+            ?  `${startDate['day']}.${startDate['month']}.${startDate['year']}`
+            : 'Unknown'
+
         const displayedEndDate = !endDate['day'] || !endDate['month'] || !endDate['year']
             ? "Did not end yet."
             : `${endDate['day']}.${endDate['month']}.${endDate['year']}`
@@ -45,7 +49,7 @@ module.exports = {
         const genres = jsonData['genres'].length <= 0 ? 'none' : jsonData['genres'].join(', ')
 
         const description = `**Title:** ${displayedAnimeTitle}\n`
-            + `\nStart: \`${startDate['day']}.${startDate['month']}.${startDate['year']}\`\n`
+            + `\nStart: \`${displayedStartDate}\`\n`
             + `End: \`${displayedEndDate}\`\n`
 
             + `\nStatus: \`${jsonData['status'].toLowerCase()}\`\n`
