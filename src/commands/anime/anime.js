@@ -54,7 +54,7 @@ module.exports = {
 
             + `\nStatus: \`${(jsonData['status'] ?? 'unknown').toLowerCase()}\`\n`
             + `Amount of episodes: \`${displayedEpisodeCount}\`\n`
-            + `Average Score: \`${jsonData['averageScore']}\`\n`
+            + `Average Score: \`${jsonData['averageScore'] ?? 'Unknown'}\`\n`
 
             + `\nGenres: \`${genres}\`\n`
 
