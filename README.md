@@ -10,3 +10,25 @@
 Leonie is a Discord bot originally written for a small community.
 It was built using the discord.js library.
 Since we value open-source software, we decided to publish the code.
+
+<h2>Features</h2>
+
+<h3>Anime</h3>
+- `air` Get notifications for airing anime episodes
+- `anime` Get information about a given anime
+- `next-episode` Get the next episode of an airing anime
+
+<h3>Moderation</h3>
+- `purge` Bulk clear multiple messages
+- `ban` Ban a server member
+- `kick` Kick a server member
+- `mute` Give a member the `Muted` role
+- `welcome` Set and get welcome channel and messages
+
+<h3>Utility</h3>
+- `weather` Get the weather in one or multiple cities
+- `math` Calculate simple and complex math equations
+- `sb` Search safebooru for images
+- `kn` Search konachan for images
+- `liyuu` Get a random image provided by the liyuu api
+- `avatar` Get the avatar of one or multiple server members
