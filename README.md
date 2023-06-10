@@ -32,3 +32,15 @@ Since we value open-source software, we decided to publish the code.
 - `kn` Search konachan for images
 - `liyuu` Get a random image provided by the liyuu api
 - `avatar` Get the avatar of one or multiple server members
+
+<h2>Deployment and Development</h2>
+1. `git clone` the repository
+2. `cd` into the new directory and run `npm i`
+3. move `config-example.json` to `config.json`
+4. edit `config.json` to your liking
+
+Now you will have to run the bot.
+
+- If you just want to run it you can `node src/`
+- If you are developing a new feature you can use `nodemon src/` after creating your own branch to get live updates.
+- If you want to run the bot on a server you can `pm2 start src/` to let the bot run while you are logged out.
