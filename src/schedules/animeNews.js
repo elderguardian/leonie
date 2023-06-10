@@ -56,7 +56,7 @@ module.exports = {
 
                     const currentEpisode = nextEpisode['episode'] ?? 0
                     const episodeCount = animeData['episodes'] ?? 0
-                    const isLastEpisode = episodeCount && episodeCount >= currentEpisode
+                    const isLastEpisode = episodeCount && currentEpisode >= episodeCount
 
                     if (isLastEpisode) {
                         removeShow(client.db, guild['discord_id'], showName).then(r => {
