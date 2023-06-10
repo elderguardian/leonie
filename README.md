@@ -1,31 +1,29 @@
-<div align="center" style="padding-top: 25px">
+<div align="center" style="padding-top: 25px;">
     <img src="leonie-banner.jpg" alt="Logo">
-    <hr>
     <h1>leonie.js</h1>
     <b>Originally built to make lives easier</b>
-    <hr style="margin-top: 40px">
 </div>
 
-<h2>About Leonie</h2>
+## About Leonie
 Leonie is a Discord bot originally written for a small community.
 It was built using the discord.js library.
 Since we value open-source software, we decided to publish the code.
 
-<h2>Features</h2>
+## Features
 
-<h3>Anime</h3>
+### Anime
 - `air` Get notifications for airing anime episodes
 - `anime` Get information about a given anime
 - `next-episode` Get the next episode of an airing anime
 
-<h3>Moderation</h3>
+### Moderation
 - `purge` Bulk clear multiple messages
 - `ban` Ban a server member
 - `kick` Kick a server member
 - `mute` Give a member the `Muted` role
 - `welcome` Set and get welcome channel and messages
 
-<h3>Utility</h3>
+### Utility
 - `weather` Get the weather in one or multiple cities
 - `math` Calculate simple and complex math equations
 - `sb` Search safebooru for images
@@ -33,7 +31,7 @@ Since we value open-source software, we decided to publish the code.
 - `liyuu` Get a random image provided by the liyuu api
 - `avatar` Get the avatar of one or multiple server members
 
-<h2>Deployment and Development</h2>
+## Deployment and Development
 1. `git clone` the repository
 2. `cd` into the new directory and run `npm i`
 3. move `config-example.json` to `config.json`
