@@ -30,7 +30,6 @@ Since we value open-source software, we decided to publish the code.
 - `math` Calculate simple and complex math equations
 - `sb` Search safebooru for images
 - `kn` Search konachan for images
-- `liyuu` Get a random image provided by the liyuu api
 - `avatar` Get the avatar of one or multiple server members
 
 <h2>Deployment and Development</h2>
