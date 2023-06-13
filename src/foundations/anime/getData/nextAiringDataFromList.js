@@ -1,4 +1,4 @@
-const getAniListAnime = require("./getAniListAnime")
+const {getAniListAnime} = require("./getMediaFromAniList")
 
 const sleep = ms => new Promise(resolve => setTimeout(resolve, ms))
 

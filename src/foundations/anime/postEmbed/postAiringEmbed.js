@@ -1,5 +1,5 @@
-const formatDelta = require("../time/formatDelta")
-const generateEmbed = require("../embed/generateEmbed")
+const formatDelta = require("../../time/formatDelta")
+const generateEmbed = require("../../embed/generateEmbed")
 
 module.exports = (animeData, channel) => {
     const nextEpisode = animeData['nextAiringEpisode']
