@@ -1,5 +1,5 @@
 const {getGuildOrError} = require("../../../../foundations/mongo/guildManager")
-const nextAiringDataFromList = require("../../../../foundations/anime/nextAiringDataFromList")
+const nextAiringDataFromList = require("../../../../foundations/anime/getData/nextAiringDataFromList")
 const parseTitle = require("../../../../foundations/anime/parseTitle");
 const formatDelta = require("../../../../foundations/time/formatDelta");
 

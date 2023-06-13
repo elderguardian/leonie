@@ -1,5 +1,5 @@
-const postAiringEmbed = require("../../foundations/anime/postAiringEmbed")
-const getAniListAnime = require("../../foundations/anime/getAniListAnime");
+const postAiringEmbed = require("../../foundations/anime/postEmbed/postAiringEmbed")
+const {getAniListAnime} = require("../../foundations/anime/getData/getMediaFromAniList")
 
 module.exports = {
     'usage': '<name>',

@@ -8,7 +8,7 @@ query ($id: Int, $page: Int, $perPage: Int, $search: String) {
       hasNextPage
       perPage
     }
-    media (id: $id, search: $search) {
+    media (id: $id, search: $search, type: {{ $TYPE_PLACEHOLDER }}) {
       id
       title {
         romaji
@@ -52,7 +52,7 @@ query ($id: Int, $page: Int, $perPage: Int, $search: String) {
 }
 `;
 
-const getAniListAnime = async name => {
+const getMediaFromAniList = async (name, type) => {
 
     if (!name || name === '') {
         throw new Error('Name can not be empty.')
@@ -70,10 +70,9 @@ const getAniListAnime = async name => {
         headers: {
             'Content-Type': 'application/json',
             'Accept': 'application/json',
-
         },
         body: JSON.stringify({
-            query: query,
+            query: query.replace('{{ $TYPE_PLACEHOLDER }}', type),
             variables: parameterVars
         })
     }
@@ -98,5 +97,8 @@ const getAniListAnime = async name => {
     }
 }
 
-module.exports = getAniListAnime
+const getAniListAnime = async name => getMediaFromAniList(name, 'ANIME')
 
+module.exports = {
+    getAniListAnime,
+}

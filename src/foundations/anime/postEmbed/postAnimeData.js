@@ -1,5 +1,5 @@
-const parseTitle = require("./parseTitle");
-const generateEmbed = require("../embed/generateEmbed");
+const parseTitle = require("../parseTitle");
+const generateEmbed = require("../../embed/generateEmbed");
 
 module.exports = (animeData, channel) => {
     let title = animeData['title']

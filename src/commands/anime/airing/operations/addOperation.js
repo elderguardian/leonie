@@ -1,4 +1,4 @@
-const getAniListAnime = require("../../../../foundations/anime/getAniListAnime")
+const {getAniListAnime} = require("../../../../foundations/anime/getData/getMediaFromAniList")
 const parseTitle = require("../../../../foundations/anime/parseTitle")
 const {addShow, showExists} = require("../../../../foundations/mongo/guildManager")
 
