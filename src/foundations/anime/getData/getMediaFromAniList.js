@@ -98,7 +98,9 @@ const getMediaFromAniList = async (name, type) => {
 }
 
 const getAniListAnime = async name => getMediaFromAniList(name, 'ANIME')
+const getAniListManga = async name => getMediaFromAniList(name, 'MANGA')
 
 module.exports = {
     getAniListAnime,
+    getAniListManga,
 }

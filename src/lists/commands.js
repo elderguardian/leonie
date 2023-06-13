@@ -18,6 +18,7 @@ module.exports = {
 
     'next-episode': require('../commands/anime/nextEpisode'),
     'anime': require('../commands/anime/anime'),
+    'manga': require('../commands/anime/manga'),
     'air': require('../commands/anime/airing'),
 
     'purge': require('../commands/mod/purge'),
