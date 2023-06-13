@@ -14,7 +14,6 @@ module.exports = {
     'math': require('../commands/util/math'),
     'sb': require('../commands/util/safebooru'),
     'kn': require('../commands/util/kona'),
-    'liyuu': require('../commands/util/liyuu'),
     'avatar': require('../commands/util/avatar'),
 
     'next-episode': require('../commands/anime/nextEpisode'),
