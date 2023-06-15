@@ -1,7 +1,6 @@
 const postAiringEmbed = require("../foundations/anime/postEmbed/postAiringEmbed")
-const {getAniListAnime} = require("../foundations/anime/getData/getMediaFromAniList")
+const {getAniList} = require("../foundations/anime/getData/getMediaFromAniList")
 const formatDelta = require("../foundations/time/formatDelta")
-const {messageLink} = require("discord.js");
 const {removeShow} = require("../foundations/mongo/guildManager");
 
 module.exports = {
@@ -33,7 +32,7 @@ module.exports = {
             }
 
             for (const showName of shows) {
-                getAniListAnime(showName).then(animeData => {
+                getAniList(showName).then(animeData => {
                     const nextEpisode = animeData['nextAiringEpisode']
 
                     if (!nextEpisode) {
