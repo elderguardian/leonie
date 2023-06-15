@@ -1,58 +1,7 @@
-const query = `
-query ($id: Int, $page: Int, $perPage: Int, $search: String) {
-  Page (page: $page, perPage: $perPage) {
-    pageInfo {
-      total
-      currentPage
-      lastPage
-      hasNextPage
-      perPage
-    }
-    media (id: $id, search: $search, type: {{ $TYPE_PLACEHOLDER }}) {
-      id
-      title {
-        romaji
-        english
-        native
-      }
-      startDate {
-        year
-        month
-        day
-      }
-      endDate {
-        year
-        month
-        day
-      }
-      coverImage {
-        large
-        medium
-      }
-      bannerImage
-      format
-      type
-      status
-      episodes
-      chapters
-      volumes
-      season
-      description
-      averageScore
-      meanScore
-      genres
-      synonyms
-      nextAiringEpisode {
-        airingAt
-        timeUntilAiring
-        episode
-      }
-    }
-  }
-}
-`;
+const filteredByType = require('./queries/filteredByType')
+const notFiltered = require('./queries/notFiltered')
 
-const getMediaFromAniList = async (name, type) => {
+const getMediaFromAniList = async (name, type = null) => {
 
     if (!name || name === '') {
         throw new Error('Name can not be empty.')
@@ -61,7 +10,11 @@ const getMediaFromAniList = async (name, type) => {
     const parameterVars = {
         search: name,
         page: 1,
-        perPage: 1
+        perPage: 1,
+    }
+
+    if (type) {
+        parameterVars['type'] = type
     }
 
     const url = 'https://graphql.anilist.co'
@@ -72,13 +25,15 @@ const getMediaFromAniList = async (name, type) => {
             'Accept': 'application/json',
         },
         body: JSON.stringify({
-            query: query.replace('{{ $TYPE_PLACEHOLDER }}', type),
+            query: type ? filteredByType : notFiltered,
             variables: parameterVars
         })
     }
 
     try {
         const response = await fetch(url, options)
+
+        console.log(response)
 
         if (!response.ok) {
             throw new Error('AniList API Response was not okay!')
