@@ -1,4 +1,4 @@
-const {getAniListAnime} = require("../../../../foundations/anime/getData/getMediaFromAniList")
+const {getAniList} = require("../../../../foundations/anime/getData/getMediaFromAniList")
 const parseTitle = require("../../../../foundations/anime/parseTitle")
 const {addShow, showExists} = require("../../../../foundations/mongo/guildManager")
 
@@ -6,7 +6,7 @@ module.exports = async (client, message, show) => {
 
     let showData
     try {
-        showData = await getAniListAnime(show)
+        showData = await getAniList(show)
     } catch (err) {
         message.channel.send(`Error getting anime data: ${err.message}`)
         return
