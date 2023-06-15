@@ -33,8 +33,6 @@ const getMediaFromAniList = async (name, type = null) => {
     try {
         const response = await fetch(url, options)
 
-        console.log(response)
-
         if (!response.ok) {
             throw new Error('AniList API Response was not okay!')
         }
