@@ -31,6 +31,8 @@ Since we value open-source software, we decided to publish the code.
 - `avatar` Get the avatar of one or multiple server members
 
 ## Deployment and Development
+
+### Running with node/pm2
 1. `git clone` the repository
 2. `cd` into the new directory and run `npm i`
 3. move `config-example.json` to `config.json`
@@ -41,3 +43,76 @@ Now you will have to run the bot.
 - If you just want to run it you can `node src/`
 - If you are developing a new feature you can use `nodemon src/` after creating your own branch to get live updates.
 - If you want to run the bot on a server you can `pm2 start src/` to let the bot run while you are logged out.
+
+
+### Docker
+
+Create a `config.json` inside a folder and add your configuration.
+An example can be found in the repository root directory.
+
+#### With MongoDB exposed
+
+##### **`docker-compose.yml`**
+```
+services:
+  leonie:
+    image: elderguardian/leonie
+    volumes:
+      - ./config.json:/usr/src/app/config.json
+```
+
+##### **`config.json`**
+```
+[...]
+  "mongo": {
+    "url": "mongodb://127.0.0.1:27017/"
+  }
+[...]
+```
+
+#### With MongoDB in a container
+
+```
+$ docker network create leonie
+```
+
+##### **`leonie/docker-compose.yml`**
+```
+services:
+  leonie:
+    image: elderguardian/leonie
+    volumes:
+      - ./config.json:/usr/src/app/config.json
+    networks:
+      - leonie
+
+networks:
+  leonie:
+    external: true
+```
+
+##### **`mongodb/docker-compose.yml`**
+```
+services:
+  mongodb:
+    image: mongo
+    volumes:
+      - './data:/data/db'
+    networks:
+      leonie:
+        aliases:
+          - mongodb
+
+networks:
+  leonie:
+    external: true
+```
+
+##### **`config.json`**
+```
+[...]
+  "mongo": {
+    "url": "mongo://mongodb:27017/"
+  }
+[...]
+```
