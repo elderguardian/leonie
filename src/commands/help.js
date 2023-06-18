@@ -45,8 +45,8 @@ module.exports = {
             message.channel.send({embeds: [embed]})
 
         } else {
-            const embed = generateEmbed('List of valid commands with usage.')
-            embed.setDescription('For more details add a command name as a parameter.')
+            const embed = generateEmbed('Command list with usage')
+            embed.setDescription('For more details, add a command name as a parameter.')
 
             const commands = [...client.commands.keys()]
             const metadata = [...client.commands.values()]
