@@ -56,7 +56,7 @@ An example can be found in the repository root directory.
 ```
 services:
   leonie:
-    image: elderguardian/leonie
+    image: ghcr.io/elderguardian/leonie:latest
     volumes:
       - ./config.json:/usr/src/app/config.json
 ```
@@ -70,7 +70,7 @@ services:
 [...]
 ```
 
-#### With MongoDB in a container
+#### With MongoDB in another container
 
 ```
 $ docker network create leonie
@@ -80,7 +80,7 @@ $ docker network create leonie
 ```
 services:
   leonie:
-    image: elderguardian/leonie
+    image: ghcr.io/elderguardian/leonie:latest
     volumes:
       - ./config.json:/usr/src/app/config.json
     networks:
@@ -115,4 +115,10 @@ networks:
     "url": "mongo://mongodb:27017/"
   }
 [...]
+```
+
+### Updating Image
+
+```
+$ docker pull ghcr.io/elderguardian/leonie:latest
 ```
