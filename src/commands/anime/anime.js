@@ -8,8 +8,8 @@ module.exports = {
             min: 1,
         },
     },
-    'callback': async (client, message, arguments) => {
-        const animeName = arguments.join(' ')
+    'callback': async (client, message, args) => {
+        const animeName = args.join(' ')
         let animeData;
 
         try {

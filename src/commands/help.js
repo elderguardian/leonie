@@ -7,8 +7,8 @@ module.exports = {
             max: 2,
         },
     },
-    'callback': (client, message, arguments) => {
-        const wantedCommand = arguments[0]
+    'callback': (client, message, args) => {
+        const wantedCommand = args[0]
 
         if (wantedCommand) {
             const commandMetadata = client.commands.get(wantedCommand)

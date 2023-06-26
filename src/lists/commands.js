@@ -3,7 +3,7 @@ module.exports = {
     'help': require('../commands/help'),
 
     'ping': {
-        'callback': (client, message, arguments) => {
+        'callback': (client, message, args) => {
             message.reply('pong!')
         }
     },

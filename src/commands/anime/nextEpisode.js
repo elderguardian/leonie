@@ -8,8 +8,8 @@ module.exports = {
             min: 1,
         },
     },
-    'callback': (client, message, arguments) => {
-        const animeName = arguments.join(' ')
+    'callback': (client, message, args) => {
+        const animeName = args.join(' ')
 
         getAniListAnime(animeName).then(animeData => {
             postAiringEmbed(animeData, message.channel)

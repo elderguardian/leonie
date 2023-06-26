@@ -10,7 +10,7 @@ module.exports = {
             PermissionsBitField.Flags.Administrator
         ],
     },
-    'callback': async (client, message, arguments) => {
+    'callback': async (client, message, args) => {
         const database = client.db.db('leonie')
         const guilds = database.collection('guilds')
 
