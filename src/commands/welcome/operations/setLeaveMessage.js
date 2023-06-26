@@ -1,8 +1,8 @@
 const {setLeaveMessage} = require('../../../foundations/mongo/guildManager')
 
-module.exports = async (client, message, arguments) => {
+module.exports = async (client, message, args) => {
 
-    const newLeaveMessage = arguments.join(' ')
+    const newLeaveMessage = args.join(' ')
 
     const mongoDb = client.db
     const guildId = message.guild.id

@@ -1,7 +1,7 @@
 const {lengthIsOkay, typesAreOkay} = require("./arguments");
 const {hasPerms} = require("./permissions");
 
-module.exports = (config, message, arguments) => {
+module.exports = (config, message, args) => {
     if (!config) {
         return
     }

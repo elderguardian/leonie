@@ -8,8 +8,8 @@ module.exports = {
             min: 1,
         },
     },
-    'callback': (client, message, arguments) => {
-        const problem = arguments.join(' ')
+    'callback': (client, message, args) => {
+        const problem = args.join(' ')
 
         calculate(problem).then(solution => {
             let answer = `Problem given: \n\`${problem}\`\n\n`

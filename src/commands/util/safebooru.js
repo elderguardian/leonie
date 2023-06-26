@@ -8,8 +8,8 @@ module.exports = {
             min: 1,
         },
     },
-    'callback': (client, message, arguments) => {
-        fetchImage(arguments.join(' ')).then(result => {
+    'callback': (client, message, args) => {
+        fetchImage(args.join(' ')).then(result => {
             sendImageEmbed(message.channel, 'safebooru machine', result, message.author)
         }).catch(err => {
             message.reply(`The image could not be fetched: \`${err.message}\``)

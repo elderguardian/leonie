@@ -15,7 +15,7 @@ module.exports = {
             PermissionsBitField.Flags.Administrator
         ],
     },
-    'callback': (client, message, [operation, ...arguments]) => {
+    'callback': (client, message, [operation, ...args]) => {
         operation = (operation ?? 'help').toLowerCase()
         const operationCallback = opCallbacks[operation]
 
@@ -26,6 +26,6 @@ module.exports = {
             return
         }
 
-        operationCallback(client, message, arguments)
+        operationCallback(client, message, args)
     }
 }

@@ -2,7 +2,7 @@ const sendImageEmbed = require('../../foundations/embed/sendImageEmbed')
 
 module.exports = {
     'usage': 'no arguments\nor multiple mention',
-    'callback': (client, message, arguments) => {
+    'callback': (client, message, args) => {
 
         let membersToSend = message.mentions.members.size >= 1
             ? [...message.mentions.members.map(g => g.user)]

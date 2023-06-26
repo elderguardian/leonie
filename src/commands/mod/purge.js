@@ -15,8 +15,8 @@ module.exports = {
             PermissionsBitField.Flags.ManageMessages
         ]
     },
-    'callback': (client, message, arguments) => {
-        const amountParsed = parseInt(arguments[0])
+    'callback': (client, message, args) => {
+        const amountParsed = parseInt(args[0])
 
         message.channel.bulkDelete(amountParsed).then(() => {
             message.channel.send(`Deleted ${amountParsed} messages.`).then(msg => msg.delete(3000))

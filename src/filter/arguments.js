@@ -1,10 +1,10 @@
 
 
 
-const lengthIsOkay = (argumentConfig, arguments) =>  {
+const lengthIsOkay = (argumentConfig, args) =>  {
     const minArguments = argumentConfig.min ?? 0
 
-    if (arguments.length < minArguments) {
+    if (args.length < minArguments) {
         return false
     }
 
@@ -14,23 +14,23 @@ const lengthIsOkay = (argumentConfig, arguments) =>  {
         return true
     }
 
-    return arguments.length < maxArguments;
+    return args.length < maxArguments;
 }
 
-const typesAreOkay = (argumentConfig, arguments) => {
+const typesAreOkay = (argumentConfig, args) => {
     const filterTypes = argumentConfig.type ?? []
 
     if (filterTypes.length === 0) {
         return true
     }
 
-    for (let i = 0; i < arguments.length; i++) {
+    for (let i = 0; i < args.length; i++) {
 
         if (!filterTypes[i]) {
             continue
         }
 
-        const argument = arguments[i]
+        const argument = args[i]
         const desiredType = filterTypes[i]
 
         switch (desiredType) {

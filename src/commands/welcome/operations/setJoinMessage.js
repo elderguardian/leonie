@@ -1,8 +1,8 @@
 const {setJoinMessage} = require('../../../foundations/mongo/guildManager')
 
-module.exports = async (client, message, arguments) => {
+module.exports = async (client, message, args) => {
 
-    const newJoinMessage = arguments.join(' ')
+    const newJoinMessage = args.join(' ')
 
     const mongoDb = client.db
     const guildId = message.guild.id
