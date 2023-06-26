@@ -16,9 +16,10 @@ Leonie is a Discord bot which was originally written for a small community. It w
 4. *Configure `config.json`*
 
 ### Starting
-- One time run: ```node src/```
-- Permanent process using [PM2](https://www.npmjs.com/package/pm2): ```npm i -g pm2 && pm2 src/```
-- Development using [Nodemon](https://www.npmjs.com/package/nodemon): ```npm i -g nodemon && nodemon src/```
+```
+npm run tsc
+npm run dev
+```
 
 ## Docker
 
