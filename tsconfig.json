@@ -3,19 +3,15 @@
     "baseUrl": ".",
     "declaration": true,
     "esModuleInterop": true,
-    "lib": [ "esnext" ],
+    "lib": ["esnext"],
     "module": "commonjs",
     "outDir": "build",
     "resolveJsonModule": true,
     "strict": true,
     "target": "es2020",
-    "allowJs": true
+    "allowJs": true,
+    "moduleResolution": "node"
   },
-  "include": [
-    "./src/**/*.ts",
-    "./src/**/*.js"
-  ],
-  "exclude": [
-    "./build/**/*.ts",
-  ]
+  "include": ["./src/**/*.ts", "./src/**/*.js"],
+  "exclude": ["./build/**/*.ts"]
 }
