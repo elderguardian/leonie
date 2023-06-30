@@ -2,7 +2,7 @@
   "name": "leonie",
   "version": "1.0.0",
   "description": "A powerful Discord Bot with moderation, anime and other utility commands. ",
-  "main": "src/index.js",
+  "main": "build/src/index.js",
   "scripts": {
     "tsc": "tsc",
     "dev": "cd src && npx ts-node index.ts"
