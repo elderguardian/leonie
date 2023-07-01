@@ -8,3 +8,33 @@ Leonie is a Discord bot which was originally written for a small community. It w
 - Other utility functionality like `getting weather or user avatars`
 
 > **_NOTE:_** Leonie is currently going through a rewrite. Do not expect all the old features to be implemented already.
+
+## Development and Deployment
+
+### Development
+```
+git clone https://github.com/elderguardian/leonie.git#
+cd leonie && npm i
+cp config-example.json config.json
+```
+
+Copy `config-example.json` to `config.json` and change it to your needs.
+```
+npm run register-commands
+npm run dev
+```
+
+### Deployment using Docker
+```
+services:
+  leonie:
+    image: ghcr.io/elderguardian/leonie:latest
+    volumes:
+      - ./config.json:/usr/src/app/config.json
+```
+
+#### Updating image
+```
+docker pull ghcr.io/elderguardian/leonie:latest
+```
+
