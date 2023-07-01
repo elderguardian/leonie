@@ -5,7 +5,8 @@
   "main": "build/src/index.js",
   "scripts": {
     "tsc": "tsc",
-    "dev": "cd src && npx ts-node index.ts"
+    "dev": "cd src && npx ts-node index.ts",
+    "register-commands": "cd src && npx ts-node register-commands.ts"
   },
   "repository": {
     "type": "git",
