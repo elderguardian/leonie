@@ -15,10 +15,10 @@ Leonie is a Discord bot which was originally written for a small community. It w
 ```
 git clone https://github.com/elderguardian/leonie.git#
 cd leonie && npm i
-cp config-example.json config.json
 ```
 
-Copy `config-example.json` to `config.json` and change it to your needs.
+Change the example configuration `config.json` to your needs.
+
 ```
 npm run register-commands
 npm run dev
