@@ -4,7 +4,7 @@ import { ICommand } from "../ICommand";
 import * as process from "process";
 
 export class FileLoader implements IFileLoader {
-  loadCommands(directory: string): ICommand[] {
+  async loadCommands(directory: string): Promise<ICommand[]> {
     const fullDirectoryPath = `${process.cwd()}/${directory}`;
     const directoryExists = fs.existsSync(fullDirectoryPath);
     const isDirectory = fs.lstatSync(fullDirectoryPath).isDirectory();
@@ -14,8 +14,8 @@ export class FileLoader implements IFileLoader {
     }
 
     const commandFiles = fs
-      .readdirSync(fullDirectoryPath)
-      .filter((commandFile) => commandFile.endsWith(".ts"));
+        .readdirSync(fullDirectoryPath)
+        .filter((commandFile) => commandFile.endsWith(".ts"));
 
     if (commandFiles.length < 1) {
       throw new Error("Could not find any valid command files.");
@@ -24,11 +24,10 @@ export class FileLoader implements IFileLoader {
     const commandList: ICommand[] = [];
 
     for (const commandFile of commandFiles) {
-      import(`${fullDirectoryPath}/${commandFile}`).then(
-        (command: ICommand) => {
-          commandList.push(command);
-        }
-      );
+      const command: ICommand = await import(
+          `${fullDirectoryPath}/${commandFile}`
+          );
+      commandList.push(command);
     }
 
     return commandList;

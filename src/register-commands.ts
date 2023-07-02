@@ -9,7 +9,7 @@ client.once(Events.ClientReady, async (client) => {
 
   const { loadCommands } = new FileLoader();
   const clientId = client.user.id;
-  const commands = loadCommands("commands");
+  const commands = await loadCommands("commands");
 
   const rest = new REST({ version: "10" }).setToken(config.bot.token);
 

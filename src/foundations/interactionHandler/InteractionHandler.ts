@@ -10,7 +10,10 @@ export class InteractionHandler implements IInteractionHandler {
 
   constructor(fileLoader: IFileLoader) {
     this.fileLoader = fileLoader;
-    this.commands = fileLoader.loadCommands("commands");
+    this.commands = [];
+    fileLoader
+      .loadCommands("commands")
+      .then((commands) => (this.commands = commands));
   }
 
   handle(
