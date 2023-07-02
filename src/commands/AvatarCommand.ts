@@ -8,7 +8,37 @@ async function fetchAvatarUrl(
     scope: string,
     guildId: string
 ): Promise<string> {
-    return ''
+    if (scope !== "global_avatar" && scope !== "server_profile") {
+        throw new Error("Invalid scope type given. " + scope);
+    }
+
+    if (scope === "global_avatar") {
+        const avatarUrl = target.avatarURL({
+            size: 4096,
+        });
+        if (!avatarUrl) {
+            throw new Error("Could not parse global avatar");
+        }
+
+        return avatarUrl;
+    }
+
+    const url = `https://discord.com/api/guilds/${guildId}/members/${target.id}`;
+
+    const response = await fetch(url, {
+        method: "GET",
+        headers: {
+            Authorization: `Bot ${config.bot.token}`,
+        },
+    });
+
+    const responseAsJson = await response.json();
+
+    if (!responseAsJson.avatar) {
+        throw new Error("Could not parse guild avatar");
+    }
+
+    return `https://cdn.discordapp.com/guilds/${guildId}/users/${target.id}/avatars/${responseAsJson.avatar}.webp?size=4096`;
 }
 
 const pingCommand: ICommand = {
