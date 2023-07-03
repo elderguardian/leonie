@@ -10,6 +10,16 @@ export class Kernel implements IKernel {
     this.instances = new Map<string, any>();
   }
 
+  singleton(name: string) {
+    if (this.instances.has(name)) {
+      return this.instances.get(name);
+    }
+
+    const instance = this.get(name);
+    this.instances.set(name, instance);
+    return instance;
+  }
+
   set(name: string, factory: ClassFactory): IKernel {
     this.mappings.set(name, factory);
     return this;
