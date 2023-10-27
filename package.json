@@ -4,9 +4,10 @@
   "description": "A powerful Discord Bot with moderation, anime and other utility commands. ",
   "main": "build/src/index.js",
   "scripts": {
-    "build": "tsc",
-    "start": "cd build/src && node index.js",
-    "buildstart": "npm run build && npm run start",
+    "build": "rm -rf build/ && tsc",
+    "start": "cd build && node index.js",
+    "copy-env": "node -e \"require('fs').copyFileSync('.env', 'build/.env')\"",
+    "buildstart": "npm run build && npm run copy-env && npm run start",
     "dev": "export LEONIE_DEV=true && npx ts-node src/index.ts",
     "register-commands": "cd src && npx ts-node register-commands.ts"
   },
