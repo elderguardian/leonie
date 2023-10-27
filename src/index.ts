@@ -5,10 +5,13 @@ import {
   IntentsBitField,
 } from "discord.js";
 import { InteractionHandler } from "./foundations/interactionHandler/InteractionHandler";
-import { FileLoader } from "./foundations/fileLoader/FileLoader";
-import config from "../config.json"
+import { ActionLoader } from "./foundations/actionLoader/ActionLoader";
+import * as dotenv from 'dotenv';
+import * as process from "process";
 
-const fileLoader = new FileLoader();
+dotenv.config();
+
+const fileLoader = new ActionLoader();
 const interactionHandler = new InteractionHandler(fileLoader);
 
 const client = new Client({
@@ -25,11 +28,13 @@ client.once(Events.ClientReady, (client: Client) => {
     return;
   }
 
-  console.log(`${client.user.username ?? "unknown"} is online`);
+  console.log(`Logged in as user: ${client.user.username ?? "unknown"}`);
 });
 
 client.on(Events.InteractionCreate, async (interaction) => {
   interactionHandler.handle({ client }, <CommandInteraction>interaction);
 });
 
-client.login(config.bot.token);
+client.login(process.env.LEONIE_BOT_TOKEN).then(r => {
+  console.log('Logging into Discord...')
+});
