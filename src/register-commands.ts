@@ -1,6 +1,9 @@
 import { Client, Events, REST, Routes } from "discord.js";
-import * as config from "../config.json";
 import { FileLoader } from "./foundations/fileLoader/FileLoader";
+import * as dotenv from 'dotenv';
+import * as process from "process";
+
+dotenv.config();
 
 const client = new Client({ intents: [] });
 
@@ -11,7 +14,7 @@ client.once(Events.ClientReady, async (client) => {
   const clientId = client.user.id;
   const commands = await loadCommands("commands");
 
-  const rest = new REST({ version: "10" }).setToken(config.bot.token);
+  const rest = new REST({ version: "10" }).setToken(process.env.LEONIE_BOT_TOKEN ?? '');
 
   console.log("Registering commands...");
 
@@ -25,6 +28,6 @@ client.once(Events.ClientReady, async (client) => {
   client.destroy();
 });
 
-client.login(config.bot.token).then((r) => {
+client.login(process.env.LEONIE_BOT_TOKEN).then((r) => {
   console.log("Logged in.");
 });
