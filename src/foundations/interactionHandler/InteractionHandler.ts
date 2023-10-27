@@ -3,6 +3,7 @@ import { ICommand } from "../ICommand";
 import { ICommandRunOptions } from "../ICommandRunOptions";
 import { IActionLoader } from "../actionLoader/IActionLoader";
 import { IInteractionHandler } from "./IInteractionHandler";
+import process from "process";
 
 export class InteractionHandler implements IInteractionHandler {
   private commands: ICommand[];
@@ -12,7 +13,9 @@ export class InteractionHandler implements IInteractionHandler {
     this.fileLoader = fileLoader;
     this.commands = [];
     fileLoader
-      .loadCommands("src/commands")
+      .loadCommands(
+        process.env.LEONIE_DEV == "true" ? "src/commands" : "commands"
+      )
       .then((commands) => (this.commands = commands));
   }
 
