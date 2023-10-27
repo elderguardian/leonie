@@ -1,7 +1,7 @@
 import { CommandInteraction, SlashCommandBuilder, User } from "discord.js";
 import { ICommand } from "../foundations/ICommand";
 import { ICommandRunOptions } from "../foundations/ICommandRunOptions";
-import * as config from "../../config.json";
+import process from "process";
 
 async function fetchAvatarUrl(
     target: User,
@@ -28,7 +28,7 @@ async function fetchAvatarUrl(
     const response = await fetch(url, {
         method: "GET",
         headers: {
-            Authorization: `Bot ${config.bot.token}`,
+            Authorization: `Bot ${process.env.LEONIE_BOT_TOKEN}`,
         },
     });
 
