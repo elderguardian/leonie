@@ -13,9 +13,12 @@ export class FileLoader implements IFileLoader {
       throw new Error("Given path to load command files is not a directory.");
     }
 
+    const tsNodeSymbol = Symbol.for('ts-node.register-instance');
+    const isRunningWithTsNode = !!((process as any)[tsNodeSymbol]);
+
     const commandFiles = fs
         .readdirSync(fullDirectoryPath)
-        .filter((commandFile) => commandFile.endsWith(".ts"));
+        .filter((commandFile) => commandFile.endsWith(isRunningWithTsNode ? ".ts" : ".js"));
 
     if (commandFiles.length < 1) {
       throw new Error("Could not find any valid command files.");
