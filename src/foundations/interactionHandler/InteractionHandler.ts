@@ -12,7 +12,7 @@ export class InteractionHandler implements IInteractionHandler {
     this.fileLoader = fileLoader;
     this.commands = [];
     fileLoader
-      .loadCommands("commands")
+      .loadCommands("src/commands")
       .then((commands) => (this.commands = commands));
   }
 
