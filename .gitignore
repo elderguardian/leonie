@@ -1,6 +1,5 @@
 node_modules/
 .idea/
 build/
-config.json
-./config.json
 docker-compose.yml
+.env
