@@ -5,13 +5,13 @@ import {
   IntentsBitField,
 } from "discord.js";
 import { InteractionHandler } from "./foundations/interactionHandler/InteractionHandler";
-import { FileLoader } from "./foundations/fileLoader/FileLoader";
+import { ActionLoader } from "./foundations/actionLoader/ActionLoader";
 import * as dotenv from 'dotenv';
 import * as process from "process";
 
 dotenv.config();
 
-const fileLoader = new FileLoader();
+const fileLoader = new ActionLoader();
 const interactionHandler = new InteractionHandler(fileLoader);
 
 const client = new Client({

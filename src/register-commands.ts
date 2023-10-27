@@ -1,5 +1,5 @@
 import { Client, Events, REST, Routes } from "discord.js";
-import { FileLoader } from "./foundations/fileLoader/FileLoader";
+import { ActionLoader } from "./foundations/actionLoader/ActionLoader";
 import * as dotenv from 'dotenv';
 import * as process from "process";
 
@@ -10,7 +10,7 @@ const client = new Client({ intents: [] });
 client.once(Events.ClientReady, async (client) => {
   console.log("Client ready.");
 
-  const { loadCommands } = new FileLoader();
+  const { loadCommands } = new ActionLoader();
   const clientId = client.user.id;
   const commands = await loadCommands("commands");
 

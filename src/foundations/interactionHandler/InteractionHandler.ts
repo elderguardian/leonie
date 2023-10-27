@@ -1,14 +1,14 @@
 import { CommandInteraction } from "discord.js";
 import { ICommand } from "../ICommand";
 import { ICommandRunOptions } from "../ICommandRunOptions";
-import { IFileLoader } from "../fileLoader/IFileLoader";
+import { IActionLoader } from "../actionLoader/IActionLoader";
 import { IInteractionHandler } from "./IInteractionHandler";
 
 export class InteractionHandler implements IInteractionHandler {
   private commands: ICommand[];
-  private fileLoader: IFileLoader;
+  private fileLoader: IActionLoader;
 
-  constructor(fileLoader: IFileLoader) {
+  constructor(fileLoader: IActionLoader) {
     this.fileLoader = fileLoader;
     this.commands = [];
     fileLoader

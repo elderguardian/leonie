@@ -1,9 +1,9 @@
 import * as fs from "fs";
-import { IFileLoader } from "./IFileLoader";
+import { IActionLoader } from "./IActionLoader";
 import { ICommand } from "../ICommand";
 import * as process from "process";
 
-export class FileLoader implements IFileLoader {
+export class ActionLoader implements IActionLoader {
   async loadCommands(directory: string): Promise<ICommand[]> {
     const fullDirectoryPath = `${process.cwd()}/${directory}`;
     const directoryExists = fs.existsSync(fullDirectoryPath);
