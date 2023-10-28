@@ -8,8 +8,9 @@
     "start": "cd build && node index.js",
     "copy-env": "node -e \"require('fs').copyFileSync('.env', 'build/.env')\"",
     "buildstart": "npm run build && npm run copy-env && npm run start",
-    "dev": "export LEONIE_DEV=true && npx ts-node src/index.ts",
-    "register-commands": "cd src && npx ts-node register-commands.ts"
+    "dev-noupdate": "export LEONIE_DEV=true && npx ts-node src/index.ts",
+    "dev": "nodemon",
+    "register-commands": "export LEONIE_DEV=true && npx ts-node src/register-commands.ts"
   },
   "repository": {
     "type": "git",
@@ -26,6 +27,7 @@
   "homepage": "https://github.com/elderguardian/leonie#readme",
   "devDependencies": {
     "dotenv": "^16.3.1",
+    "nodemon": "^3.0.1",
     "ts-node": "^10.9.1",
     "typescript": "^5.1.6"
   },
