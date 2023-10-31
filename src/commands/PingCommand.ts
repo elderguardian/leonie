@@ -1,16 +1,18 @@
 import { CommandInteraction, SlashCommandBuilder } from "discord.js";
-import { ICommand } from "../foundations/ICommand";
-import { ICommandRunOptions } from "../foundations/ICommandRunOptions";
+import { ICommand } from "../foundations/command/ICommand";
+import { ICommandRunOptions } from "../foundations/command/ICommandRunOptions";
 
-const pingCommand: ICommand = {
-  data: new SlashCommandBuilder().setName("ping").setDescription("Pong!"),
-  run(runOptions: ICommandRunOptions, interaction: CommandInteraction): void {
-    const startTime = Date.now();
-    interaction.reply("Pong!").then((response) => {
-      const endTime = Date.now();
-      response.edit(`Pong! *${endTime - startTime}ms*`);
-    });
-  },
-};
+export class PingCommand implements ICommand {
+    getMetadata(): SlashCommandBuilder {
+        return new SlashCommandBuilder()
+            .setName("ping")
+            .setDescription("Pong!");
+    }
 
-module.exports = pingCommand;
+    async run(runOptions: ICommandRunOptions, interaction: CommandInteraction): Promise<void> {
+        const startTime = Date.now();
+        await interaction.reply("Pong!");
+        const endTime = Date.now();
+        await interaction.editReply(`Pong! *${endTime - startTime}ms*`);
+    }
+}
