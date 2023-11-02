@@ -1,7 +1,7 @@
 import { MediaStatus } from "./MediaStatus";
 import { MediaSeason } from "./MediaSeason";
 
-export interface IMangaMetadata {
+export interface IManga {
     title: string;
     startDate: Date;
     endDate: Date | null;

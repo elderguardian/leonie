@@ -1,8 +1,7 @@
-import { IMediaMetadata } from "./IMediaMetadata";
 import { MediaStatus } from "./MediaStatus";
 import { MediaSeason } from "./MediaSeason";
 
-export interface IAnimeMetadata {
+export interface IAnime {
     title: string;
     startDate: Date;
     endDate: Date | null;
