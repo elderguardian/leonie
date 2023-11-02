@@ -99,6 +99,50 @@ export class AnimeFetcher implements IAnimeFetcher {
         };
     }
 
+    async fetchManga(name: string): Promise<IManga> {
+        const variables = {
+            search: name,
+            page: 1,
+            perPage: 1,
+            type: "MANGA",
+        };
+
+        const rawMedia = await this.fetchRawMedia(query_mediaByType, variables);
+
+        const title =
+            rawMedia.title.english ||
+            rawMedia.title.romaji ||
+            rawMedia.title.native ||
+            "Title is unknown";
+
+        const startDate = new Date(
+            `${rawMedia.startDate.month}.${rawMedia.startDate.day}.${rawMedia.startDate.year}`
+        );
+        const endDate = rawMedia.endDate
+            ? new Date(`${rawMedia.endDate.month}.${rawMedia.endDate.day}.${rawMedia.endDate.year}`)
+            : null;
+
+        return {
+            title,
+            startDate,
+            endDate,
+            images: {
+                cover: rawMedia.coverImage.large,
+                banner: rawMedia.bannerImage,
+            },
+            status: rawMedia.status as MediaStatus,
+            season: rawMedia.season as MediaSeason,
+            description: rawMedia.description,
+            genres: String(rawMedia.genres).split(","),
+            isAdult: rawMedia.isAdult ?? false,
+            siteUrl: rawMedia.siteUrl ?? null,
+            size: {
+                chapters: rawMedia.chapters,
+                volumes: rawMedia.volumes,
+            },
+        };
+    }
+
     private async fetchRawMedia(query: string, variables: any): Promise<any> {
         const options = {
             method: "POST",
