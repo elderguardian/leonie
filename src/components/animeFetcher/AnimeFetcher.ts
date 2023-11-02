@@ -48,6 +48,57 @@ export class AnimeFetcher implements IAnimeFetcher {
         }
     }
 
+    async fetchAnime(name: string): Promise<IAnime> {
+        const variables = {
+            search: name,
+            page: 1,
+            perPage: 1,
+            type: "ANIME",
+        };
+
+        const rawMedia = await this.fetchRawMedia(query_mediaByType, variables);
+
+        const title =
+            rawMedia.title.english ||
+            rawMedia.title.romaji ||
+            rawMedia.title.native ||
+            "Title is unknown";
+
+        const startDate = new Date(
+            `${rawMedia.startDate.month}.${rawMedia.startDate.day}.${rawMedia.startDate.year}`
+        );
+        const endDate = rawMedia.endDate
+            ? new Date(`${rawMedia.endDate.month}.${rawMedia.endDate.day}.${rawMedia.endDate.year}`)
+            : null;
+
+        return {
+            title,
+            startDate,
+            endDate,
+            images: {
+                cover: rawMedia.coverImage.large,
+                banner: rawMedia.bannerImage,
+            },
+            status: rawMedia.status as MediaStatus,
+            season: rawMedia.season as MediaSeason,
+            description: rawMedia.description,
+            genres: String(rawMedia.genres).split(","),
+            isAdult: rawMedia.isAdult ?? false,
+            siteUrl: rawMedia.siteUrl ?? null,
+            episodes: {
+                amount: rawMedia.episodes,
+                duration: rawMedia.duration,
+            },
+            nextAiringEpisode: rawMedia.nextAiringEpisode
+                ? {
+                    airingAt: new Date(rawMedia.nextAiringEpisode.airingAt),
+                    timeUntilAiring: rawMedia.nextAiringEpisode.timeUntilAiring,
+                    episode: rawMedia.nextAiringEpisode.episode,
+                }
+                : null,
+        };
+    }
+
     private async fetchRawMedia(query: string, variables: any): Promise<any> {
         const options = {
             method: "POST",
