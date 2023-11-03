@@ -11,30 +11,29 @@ Leonie is a Discord bot which was originally written for a small community. It w
 
 ## Development and Deployment
 
+First, create a `.env` file and add your token as `LEONIE_BOT_TOKEN`. Also make sure to register your commands before deploying.
+
+```bash
+$ echo LEONIE_BOT_TOKEN=your-token >> .env
+$ npm run register-commands
+```
+
 ### Development
-```
-git clone https://github.com/elderguardian/leonie.git#
-cd leonie && npm i
-```
-
-Change the example configuration `config.json` to your needs.
-
-```
-npm run register-commands
-npm run dev
+```bash
+$ npm i && npm run dev
 ```
 
 ### Deployment using Docker
-```
+```yaml
 services:
   leonie:
     image: ghcr.io/elderguardian/leonie:latest
     volumes:
-      - ./config.json:/usr/src/app/config.json
+      - ./env:/usr/src/app/.env
 ```
 
 #### Updating image
-```
-docker pull ghcr.io/elderguardian/leonie:latest
+```bash
+$ docker pull ghcr.io/elderguardian/leonie:latest
 ```
 
