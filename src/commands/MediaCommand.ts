@@ -34,12 +34,28 @@ export class MediaCommand implements ICommand {
             switch (typeAsString) {
                 case "anime": await this.handleAnimeOption(interaction, mediaTitle); break;
                 case "manga": await this.handleMangaOption(interaction, mediaTitle); break;
+                case "character": await this.handleCharacterOption(interaction, mediaTitle); break;
             }
         } catch (error: any) {
             await interaction.editReply({
                 content: `Failed executing: ${error.message}`
             })
         }
+    }
+
+    private async handleCharacterOption(interaction: CommandInteraction, name: string): Promise<void> {
+        const animeFetcher = kernel.get("IAnimeFetcher");
+        const metadata = await animeFetcher.fetchCharacter(name);
+
+        let embedDescription = `## ${metadata.name}\n` +
+            `### Likes: \`${metadata.likes}\`\n`;
+
+        const metadataEmbed = this.buildAniListEmbed()
+            .setURL(metadata.url)
+            .setDescription(embedDescription)
+            .setThumbnail(metadata.image);
+
+        await interaction.editReply({ embeds: [metadataEmbed], });
     }
 
     private async handleMangaOption(interaction: CommandInteraction, mediaTitle: string): Promise<void> {
