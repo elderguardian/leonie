@@ -1,90 +1,54 @@
-import { CommandInteraction, SlashCommandBuilder, User } from "discord.js";
-import { ICommand } from "../foundations/ICommand";
-import { ICommandRunOptions } from "../foundations/ICommandRunOptions";
-import process from "process";
+import { CommandInteraction, EmbedBuilder, SlashCommandBuilder } from "discord.js";
+import { ICommand } from "../foundations/command/ICommand";
+import { ICommandRunOptions } from "../foundations/command/ICommandRunOptions";
+import { kernel } from "../core/ioc/Container";
+import { AvatarScopes } from "../components/discordFetcher/AvatarScopes";
+import { leonieConfig } from "../core/config/LeonieConfig";
 
-async function fetchAvatarUrl(
-    target: User,
-    scope: string,
-    guildId: string
-): Promise<string> {
-    if (scope !== "global_avatar" && scope !== "server_profile") {
-        throw new Error("Invalid scope type given. " + scope);
+export class AvatarCommand implements ICommand {
+    getMetadata(): SlashCommandBuilder {
+        return new SlashCommandBuilder()
+            .addUserOption((option) => option
+                .setName("target")
+                .setDescription("Select user.")
+                .setRequired(true))
+            .addStringOption((option) => option
+                .setName("scope")
+                .setDescription("Select avatar scope")
+                .addChoices({ name: "Global avatar", value: "global_avatar" },
+                    { name: "Server profile", value: "server_profile" }))
+            .setDMPermission(false)
+            .setName("avatar")
+            .setDescription("Get the avatar of a user.");
     }
 
-    if (scope === "global_avatar") {
-        const avatarUrl = target.avatarURL({
-            size: 4096,
-        });
-        if (!avatarUrl) {
-            throw new Error("Could not parse global avatar");
+    async run(runOptions: ICommandRunOptions, interaction: CommandInteraction): Promise<void> {
+        await interaction.deferReply();
+
+        const targetUser = interaction.options.getUser("target", true);
+        const scopeObject = interaction.options.get("scope", false);
+
+        const scopeEnumerator = scopeObject && scopeObject.value === "global_avatar"
+            ? AvatarScopes.GLOBAL : AvatarScopes.SERVER;
+
+        if (!interaction.guild) {
+            await interaction.editReply("This command is guild only.");
+            return;
         }
 
-        return avatarUrl;
+        const discordFetcher = kernel.get("IDiscordFetcher");
+
+        try {
+            const member = await interaction.guild.members.fetch(targetUser);
+            const avatarUrl = await discordFetcher.fetchAvatarUrl(member, scopeEnumerator);
+
+            const avatarEmbed = new EmbedBuilder()
+                .setColor(leonieConfig.embed_color)
+                .setImage(avatarUrl);
+
+            await interaction.editReply({ embeds: [avatarEmbed] });
+        } catch (error: any) {
+            await interaction.editReply(`Could not fetch avatar: ${error.message}`);
+        }
     }
-
-    const url = `https://discord.com/api/guilds/${guildId}/members/${target.id}`;
-
-    const response = await fetch(url, {
-        method: "GET",
-        headers: {
-            Authorization: `Bot ${process.env.LEONIE_BOT_TOKEN}`,
-        },
-    });
-
-    const responseAsJson = await response.json();
-
-    if (!responseAsJson.avatar) {
-        throw new Error("Could not parse guild avatar");
-    }
-
-    return `https://cdn.discordapp.com/guilds/${guildId}/users/${target.id}/avatars/${responseAsJson.avatar}.webp?size=4096`;
 }
-
-const pingCommand: ICommand = {
-  data: new SlashCommandBuilder()
-      .addUserOption((option) =>
-          option.setName("target").setDescription("Select user.").setRequired(true)
-      )
-      .addStringOption((option) =>
-          option
-              .setName("scope")
-              .setDescription("Select avatar scope")
-              .addChoices(
-                  { name: "Global avatar", value: "global_avatar" },
-                  { name: "Server profile", value: "server_profile" }
-              )
-      )
-      .setDMPermission(false)
-      .setName("avatar")
-      .setDescription("Get the avatar of a user."),
-  async run(
-      runOptions: ICommandRunOptions,
-      interaction: CommandInteraction
-  ): Promise<void> {
-      await interaction.deferReply();
-
-      const target = interaction.options.getUser("target", true);
-      const scopeObject = interaction.options.get("scope", false);
-
-      const scopeValue = scopeObject ? scopeObject.value : "";
-      const scope = scopeObject && scopeValue ? scopeValue : "global_avatar";
-
-      if (!interaction.guild) {
-          await interaction.editReply("This command is guild only.");
-          return;
-      }
-
-      await fetchAvatarUrl(target, scope.toString(), interaction.guild.id ?? "")
-          .then(async (avatarUrl) => {
-              await interaction.editReply(avatarUrl);
-          })
-          .catch(async (err) => {
-              await interaction.editReply(
-                  `Error while fetching avatar: ${err.message}`
-              );
-          });
-  },
-};
-
-module.exports = pingCommand;
