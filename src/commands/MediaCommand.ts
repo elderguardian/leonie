@@ -1,8 +1,9 @@
-import { CommandInteraction, EmbedBuilder, SlashCommandBuilder } from "discord.js";
+import { CommandInteraction, EmbedBuilder, escapeBold, SlashCommandBuilder } from "discord.js";
 import { ICommand } from "../foundations/command/ICommand";
 import { ICommandRunOptions } from "../foundations/command/ICommandRunOptions";
 import { leonieConfig } from "../core/config/LeonieConfig";
 import { kernel } from "../core/ioc/Container";
+import { IBirthday } from "../components/animeFetcher/data/IBirthday";
 
 export class MediaCommand implements ICommand {
     getMetadata(): SlashCommandBuilder {
@@ -47,8 +48,12 @@ export class MediaCommand implements ICommand {
         const animeFetcher = kernel.get("IAnimeFetcher");
         const metadata = await animeFetcher.fetchCharacter(name);
 
-        let embedDescription = `## ${metadata.name}\n` +
-            `### Likes: \`${metadata.likes}\`\n`;
+        let embedDescription = `## ${metadata.name}\n`
+        if (metadata.gender) embedDescription += `### Gender: \`${metadata.gender}\`\n`;
+        if (metadata.age) embedDescription += `### Age: \`${metadata.age}\`\n`
+        if (metadata.likes) embedDescription += `### Likes: \`${metadata.likes}\`\n`;
+        if (metadata.bloodType) embedDescription += `### Blood Type: \`${metadata.bloodType}\`\n`;
+        if (metadata.dateOfBirth) embedDescription += `### Birthday: \`${this.formatBirthday(metadata.dateOfBirth)}\`\n`;
 
         const metadataEmbed = this.buildAniListEmbed()
             .setURL(metadata.url)
@@ -115,7 +120,7 @@ export class MediaCommand implements ICommand {
         await interaction.editReply({ embeds: [metadataEmbed], });
     }
 
-    private buildAniListEmbed() : EmbedBuilder {
+    private buildAniListEmbed(): EmbedBuilder {
         return new EmbedBuilder()
             .setColor(leonieConfig.embed_color)
             .setTitle("AniList Page")
@@ -127,6 +132,14 @@ export class MediaCommand implements ICommand {
             .setFooter({
                 text: "If this is not what you wanted, complain to AniList",
             });
+    }
+
+    private formatBirthday(birthday: IBirthday): string {
+        const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec",]
+
+        return birthday.year
+            ? `${birthday.day} ${months[birthday.month]}, ${birthday.year}`
+            : `${birthday.day} ${months[birthday.month]}`;
     }
 
     private formatDateToShortDate(date: Date): string {
@@ -154,5 +167,4 @@ export class MediaCommand implements ICommand {
 
         return `${days}d\` \`${hours}h\` \`${minutes}m\` \`${seconds}s`;
     }
-
 }
