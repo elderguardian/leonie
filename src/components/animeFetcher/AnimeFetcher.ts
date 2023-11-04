@@ -42,6 +42,10 @@ export class AnimeFetcher implements IAnimeFetcher {
                 url: rawCharacterData.siteUrl,
                 image: rawCharacterData.image.large,
                 likes: rawCharacterData.favourites,
+                gender: rawCharacterData.dategenderOfBirth,
+                dateOfBirth: rawCharacterData.dateOfBirth,
+                age: rawCharacterData.age,
+                bloodType: rawCharacterData.bloodType,
             };
         } catch (error: any) {
             throw new Error(`Could not fetch information: ${error.message}`);
