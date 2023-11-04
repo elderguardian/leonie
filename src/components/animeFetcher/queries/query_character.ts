@@ -9,7 +9,10 @@ query($search: String!) {
         image {
             large
         }
+        gender
+        dateOfBirth
+        age
+        bloodType
     }
 }
-
 `
