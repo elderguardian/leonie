@@ -3,4 +3,8 @@ export interface ICharacter {
     url: string;
     likes: number;
     image: string;
+    gender: string;
+    dateOfBirth: string;
+    age: string;
+    bloodType: string;
 }
