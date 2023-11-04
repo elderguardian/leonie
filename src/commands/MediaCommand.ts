@@ -31,12 +31,40 @@ export class MediaCommand implements ICommand {
         const mediaTitle = String(mediaTitleOption.value);
 
         try {
-            await this.handleAnimeOption(interaction, mediaTitle)
+            switch (typeAsString) {
+                case "anime": await this.handleAnimeOption(interaction, mediaTitle); break;
+                case "manga": await this.handleMangaOption(interaction, mediaTitle); break;
+            }
         } catch (error: any) {
             await interaction.editReply({
                 content: `Failed executing: ${error.message}`
             })
         }
+    }
+
+    private async handleMangaOption(interaction: CommandInteraction, mediaTitle: string): Promise<void> {
+        const animeFetcher = kernel.get("IAnimeFetcher");
+        const metadata = await animeFetcher.fetchManga(mediaTitle);
+
+        const displayedEndDate = metadata.endDate
+            ? this.formatDateToShortDate(metadata.endDate)
+            : "Not available";
+
+        const displayedStartDate = this.formatDateToShortDate(metadata.startDate);
+
+        let embedDescription = `## ${metadata.title}\n` +
+            `\`${metadata.genres.join(", ")}\`\n` +
+            `### \`${displayedStartDate}\` to \`${displayedEndDate}\`\n` +
+            `\nVolumes: \`${metadata.size.volumes}\`\n` +
+            `Chapters: \`${metadata.size.chapters}\`\n`;
+
+        const metadataEmbed = this.buildAniListEmbed()
+            .setURL(metadata.siteUrl)
+            .setDescription(embedDescription)
+            .setThumbnail(metadata.images.cover)
+            .setImage(metadata.images.banner);
+
+        await interaction.editReply({ embeds: [metadataEmbed], });
     }
 
     private async handleAnimeOption(interaction: CommandInteraction, mediaTitle: string): Promise<void> {
