@@ -37,11 +37,23 @@ export class AnimeFetcher implements IAnimeFetcher {
                 throw new Error("Could not find this character.");
             }
 
+            const dateOfBirthExists = rawCharacterData.dateOfBirth
+                && rawCharacterData.dateOfBirth.day
+                && rawCharacterData.dateOfBirth.month
+
+            const dateOfBirth = dateOfBirthExists
+                ? rawCharacterData.dateOfBirth
+                : null
+
             return {
                 name: rawCharacterData.name.userPreferred,
                 url: rawCharacterData.siteUrl,
                 image: rawCharacterData.image.large,
                 likes: rawCharacterData.favourites,
+                gender: rawCharacterData.gender,
+                age: rawCharacterData.age,
+                bloodType: rawCharacterData.bloodType,
+                dateOfBirth,
             };
         } catch (error: any) {
             throw new Error(`Could not fetch information: ${error.message}`);
