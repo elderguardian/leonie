@@ -10,7 +10,11 @@ query($search: String!) {
             large
         }
         gender
-        dateOfBirth
+        dateOfBirth {
+          year
+          month
+          day
+        }
         age
         bloodType
     }
