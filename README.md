@@ -1,22 +1,19 @@
-# Leonie
+# The Leonie Discord Bot
 Leonie is a Discord bot which was originally written for a small community. It was built using the discord.js library. Since we value open-source software, we decided to publish the code.
 
 ## Key Featuress
-
-- Get notifications about `airing anime` episodes on AniList.
-- `Moderation` commands and welcome/goodbye messages.
-- Other utility functionality like `getting weather or user avatars`
-
-> **_NOTE:_** Leonie is currently going through a rewrite. Do not expect all the old features to be implemented already.
+- Capable of retrieving server and global scope `user avatars`.
+- `Weather` command that recognizes cities, airports, and other important locations.
+- Ability to obtain information about `anime`, `manga`, and their `characters`.
 
 ## Development and Deployment
 
-First, create a `.env` file and add your token as `LEONIE_BOT_TOKEN`. Also make sure to register your commands before deploying.
-
+### Configuration
 ```bash
 $ echo LEONIE_BOT_TOKEN=your-token >> .env
-$ npm run register-commands
 ```
+
+Register the commands at Discord before running using `npm run register-commands`.
 
 ### Development
 ```bash
@@ -37,3 +34,6 @@ services:
 $ docker pull ghcr.io/elderguardian/leonie:latest
 ```
 
+## License
+
+[GNU General Public License, Version 3.0 (GPL-3.0)](./LICENSE)
