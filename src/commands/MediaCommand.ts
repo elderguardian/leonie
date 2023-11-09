@@ -4,6 +4,7 @@ import { ICommandRunOptions } from "../foundations/command/ICommandRunOptions";
 import { leonieConfig } from "../core/config/LeonieConfig";
 import { kernel } from "../core/ioc/Container";
 import { IBirthday } from "../components/animeFetcher/data/IBirthday";
+import { blacklist_media_command } from "../core/blacklistManager/blacklists";
 
 export class MediaCommand implements ICommand {
     getMetadata(): SlashCommandBuilder {
@@ -23,6 +24,18 @@ export class MediaCommand implements ICommand {
     }
 
     async run(runOptions: ICommandRunOptions, interaction: CommandInteraction): Promise<void> {
+        const userIsOnCooldown = blacklist_media_command.isBlacklisted(interaction.user.id);
+
+        if (userIsOnCooldown) {
+            const cooldownTimeLeft = blacklist_media_command.getSecondsLeft(interaction.user.id);
+
+            await interaction.reply({
+                ephemeral: true,
+                content: `You are on cooldown! Wait an additional ${cooldownTimeLeft}s.`,
+            });
+            return;
+        }
+
         await interaction.deferReply();
 
         const mediaTitleOption = interaction.options.get("title", true);
@@ -37,6 +50,8 @@ export class MediaCommand implements ICommand {
                 case "manga": await this.handleMangaOption(interaction, mediaTitle); break;
                 case "character": await this.handleCharacterOption(interaction, mediaTitle); break;
             }
+
+            blacklist_media_command.addToBlacklist(interaction.user.id);
         } catch (error: any) {
             await interaction.editReply({
                 content: `Failed executing: ${error.message}`
