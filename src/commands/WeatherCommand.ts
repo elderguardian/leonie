@@ -18,6 +18,18 @@ export class WeatherCommand implements ICommand {
     }
 
     async run(runOptions: ICommandRunOptions, interaction: CommandInteraction): Promise<void> {
+        const userIsOnCooldown = blacklist_weather_command.isBlacklisted(interaction.user.id);
+
+        if (userIsOnCooldown) {
+            const cooldownTimeLeft = blacklist_weather_command.getSecondsLeft(interaction.user.id);
+
+            await interaction.reply({
+                ephemeral: true,
+                content: `You are on cooldown! Wait an additional ${cooldownTimeLeft}s.`,
+            });
+            return;
+        }
+
         await interaction.deferReply();
         const locationOption = interaction.options.get("location", true);
         const locations = (String(locationOption.value) ?? "").split(",");
@@ -27,6 +39,7 @@ export class WeatherCommand implements ICommand {
         for (const location of locations) {
             try {
                 const weather = await weatherFetcher.fetchWeather(location);
+                blacklist_weather_command.addToBlacklist(interaction.user.id);
 
                 const weatherEmbed = new EmbedBuilder()
                     .setColor(leonieConfig.embed_color)
