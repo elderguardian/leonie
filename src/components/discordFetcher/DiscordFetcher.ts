@@ -25,7 +25,7 @@ export class DiscordFetcher implements IDiscordFetcher {
             },
         });
 
-        const responseAsJson = await response.json();
+        const responseAsJson: any = await response.json();
 
         if (!responseAsJson.avatar) {
             throw new Error("Could not parse guild avatar");
