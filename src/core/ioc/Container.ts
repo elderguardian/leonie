@@ -7,4 +7,4 @@ import { WeatherFetcher } from "../../components/weatherFetcher/WeatherFetcher";
 export const kernel: IKernel = new Kernel()
     .set("IDiscordFetcher", () => new DiscordFetcher())
     .set("IAnimeFetcher", () => new AnimeFetcher())
-    .set("IWeatherFetcher", () => new WeatherFetcher());
+    .set("IWeatherFetcher", () => new WeatherFetcher())
