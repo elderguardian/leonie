@@ -34,7 +34,8 @@ export class IssuesCommand implements ICommand {
         const issueEmbed = new EmbedBuilder()
             .setColor(leonieConfig.embed_color)
             .setTitle(`Issues for elderguardian/leonie.`)
-            .setURL("https://github.com/elderguardian/leonie/issues")
+            .setURL("https://github.com/elderguardian/leonie/issues")s
+            .setThumbnail("https://elderguardian.github.io/leonie/github-mark-white.png")
             .setDescription(embedDescription)
             .setFooter({ text: 'Support for GitHub users: elderguardian@tutanota.com' });
 
