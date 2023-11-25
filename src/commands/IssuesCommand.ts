@@ -35,7 +35,8 @@ export class IssuesCommand implements ICommand {
             .setColor(leonieConfig.embed_color)
             .setTitle(`Issues for elderguardian/leonie.`)
             .setURL("https://github.com/elderguardian/leonie/issues")
-            .setDescription(embedDescription);
+            .setDescription(embedDescription)
+            .setFooter({ text: 'Support for GitHub users: elderguardian@tutanota.com' });
 
         await interaction.editReply({ embeds: [issueEmbed] });
     }
