@@ -5,7 +5,8 @@ Leonie is a Discord bot which was originally written for a small community. It w
 - Capable of retrieving server and global scope `user avatars`.
 - `Weather` command that recognizes cities, airports, and other important locations.
 - Ability to obtain information about `anime`, `manga`, and their `characters`.
-
+- [GitHub Integration: View the bot's repository issues using a command
+](https://elderguardian.github.io/blog/articles/INTEGRATING_GITHUB_INTO_LEONIE.html)
 ## Development and Deployment
 
 ### Configuration
