@@ -1,0 +1,37 @@
+{
+  "name": "leonie",
+  "version": "0.1.2",
+  "description": "A powerful Discord Bot with moderation, anime and other utility commands. ",
+  "main": "build/src/index.js",
+  "scripts": {
+    "build": "rm -rf build/ && tsc",
+    "start": "cd build && node index.js",
+    "copy-env": "node -e \"require('fs').copyFileSync('.env', 'build/.env')\"",
+    "buildstart": "npm run build && npm run copy-env && npm run start",
+    "dev-noupdate": "export LEONIE_DEV=true && npx ts-node src/index.ts",
+    "dev": "nodemon",
+    "register-commands": "export LEONIE_DEV=true && npx ts-node src/register-commands.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/elderguardian/leonie.git"
+  },
+  "keywords": [
+    "discord",
+    "bot"
+  ],
+  "author": "elderguardian",
+  "bugs": {
+    "url": "https://github.com/elderguardian/leonie/issues"
+  },
+  "homepage": "https://github.com/elderguardian/leonie#readme",
+  "devDependencies": {
+    "dotenv": "^16.3.1",
+    "nodemon": "^3.0.1",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.3.2"
+  },
+  "dependencies": {
+    "discord.js": "14.14.1"
+  }
+}
