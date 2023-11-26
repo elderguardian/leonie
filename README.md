@@ -9,8 +9,6 @@ An awesome Discord bot with a modular architecture, originally designed for a sm
 - Anime and Manga Info: Access information about anime, manga, and their characters.
 - GitHub Integration: View the bot's repository issues directly through a simple command. [Learn more](https://elderguardian.github.io/blog/articles/INTEGRATING_GITHUB_INTO_LEONIE.html)
 
-
 ### 🛠️ Development and Deployment
-
 > [!IMPORTANT]
-> Remember to configure your bots token! <br> `$ echo LEONIE_BOT_TOKEN=your-token >> .env`
+> Remember to configure your bot's token! <br> `$ echo LEONIE_BOT_TOKEN=your-token >> .env`
