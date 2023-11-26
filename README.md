@@ -12,3 +12,17 @@ An awesome Discord bot with a modular architecture, originally designed for a sm
 ### 🛠️ Development and Deployment
 > [!IMPORTANT]
 > Remember to configure your bot's token! <br> `$ echo LEONIE_BOT_TOKEN=your-token >> .env`
+
+### Starting the development environment with a single command
+```bash
+$ npm i npm run register-commands && npm run dev
+```
+
+### Using Docker to deploy
+```yaml
+services:
+  leonie:
+    image: ghcr.io/elderguardian/leonie:latest
+    volumes:
+      - ./env:/usr/src/app/.env
+```
