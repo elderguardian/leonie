@@ -26,3 +26,6 @@ services:
     volumes:
       - ./env:/usr/src/app/.env
 ```
+
+> [!CAUTION]
+> You have to register the commands of your app manually! <br> `$ npm run register-commands`
