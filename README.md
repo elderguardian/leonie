@@ -5,8 +5,8 @@ An awesome Discord bot with a modular architecture, originally designed for a sm
 
 ### 🚀 Key Features
 - Avatar Retrieval: Easily fetch user and server avatars.
-- Weather Command: Get real-time weather updates for cities, airports, and other locations.
-- Anime and Manga Info: Access information about anime, manga, and their characters.
+- Weather Command: Get real-time weather updates using [wttr.in](https://wttr.in/)
+- Anime and Manga Info: Access [AniList](https://anilist.co/) about anime, manga, and their characters.
 - GitHub Integration: View the bot's repository issues directly through a simple command. [Learn more](https://elderguardian.github.io/blog/articles/INTEGRATING_GITHUB_INTO_LEONIE.html)
 
 ### 🛠️ Development and Deployment
