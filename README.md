@@ -1,7 +1,7 @@
 <img src="https://github.com/elderguardian/leonie/assets/129489839/1cedd811-21af-4f26-9299-406dc2ac3fcc" align="right" width="250px">
 
 # Leonie
-Awesome Discord Bot, Modular Architecture, Originally designed for a small community.
+An awesome Discord bot with a modular architecture, originally designed for a small community.
 
 ### 🚀 Key Features
 - Avatar Retrieval: Easily fetch user avatars from both server and global scopes.
