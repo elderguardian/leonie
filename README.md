@@ -29,3 +29,8 @@ services:
 
 > [!CAUTION]
 > You have to register the commands of your app manually! <br> `$ npm run register-commands`
+
+<hr>
+
+### 📜 License
+This project is licensed under the [GNU General Public License, Version 3.0 (GPL-3.0).](./LICENSE)
