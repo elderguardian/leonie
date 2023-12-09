@@ -3,4 +3,4 @@ export interface IWeatherCacheObject {
     value: string;
 }
 
-export let weather_cache: Map<string, IWeatherCacheObject> = new Map();
+export const weather_cache: Map<string, IWeatherCacheObject> = new Map();

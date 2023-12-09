@@ -88,7 +88,7 @@ export class MediaCommand implements ICommand {
 
         const displayedStartDate = this.formatDateToShortDate(metadata.startDate);
 
-        let embedDescription = `## ${metadata.title}\n` +
+        const embedDescription = `## ${metadata.title}\n` +
             `\`${metadata.genres.join(", ")}\`\n` +
             `### \`${displayedStartDate}\` to \`${displayedEndDate}\`\n` +
             `\nVolumes: \`${metadata.size.volumes}\`\n` +
