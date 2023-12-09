@@ -13,7 +13,7 @@ export class ActionLoader implements IActionLoader {
             throw new Error("Given path to load command files is not a directory.");
         }
 
-        let commandFiles = fs
+        const commandFiles = fs
             .readdirSync(fullDirectoryPath)
             .filter((commandFile) =>
                 commandFile.endsWith(process.env.LEONIE_DEV == "true" ? ".ts" : ".js")
