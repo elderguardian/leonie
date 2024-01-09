@@ -60,10 +60,3 @@ jobs:
             --push \
             -t ${{ env.REGISTRY }}/${{ github.repository }}:latest-arm64 \
             .
-
-      - name: Push multi-platform manifest
-        run: |
-          docker manifest create ${{ env.REGISTRY }}/${{ github.repository }}:latest \
-            --amend ${{ env.REGISTRY }}/${{ github.repository }}:latest \
-            --amend ${{ env.REGISTRY }}/${{ github.repository }}:latest-arm64
-          docker manifest push ${{ env.REGISTRY }}/${{ github.repository }}:latest
