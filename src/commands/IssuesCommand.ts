@@ -16,7 +16,7 @@ export class IssuesCommand implements ICommand {
     async run(runOptions: ICommandRunOptions, interaction: CommandInteraction): Promise<void> {
         await interaction.deferReply();
 
-        const githubFetcher = kernel.get("IGithubFetcher");
+        const githubFetcher = kernel.get("IGitHubFetcher");
         const issues: RepositoryIssues = await githubFetcher.fetchIssues("elderguardian", "leonie");
         const openIssues = issues.filter((issue) => issue.state === "open");
 
