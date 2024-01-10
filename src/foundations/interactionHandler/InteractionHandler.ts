@@ -1,9 +1,7 @@
 import { CommandInteraction } from "discord.js";
 import { ICommand } from "../command/ICommand";
 import { ICommandRunOptions } from "../command/ICommandRunOptions";
-import { IActionLoader } from "../actionLoader/IActionLoader";
 import { IInteractionHandler } from "./IInteractionHandler";
-import process from "process";
 
 export class InteractionHandler implements IInteractionHandler {
     private commands: ICommand[];
