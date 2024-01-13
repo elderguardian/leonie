@@ -1,4 +1,4 @@
-import { CommandInteraction, EmbedBuilder, escapeBold, SlashCommandBuilder } from "discord.js";
+import { CommandInteraction, EmbedBuilder, SlashCommandBuilder } from "discord.js";
 import { ICommand } from "../foundations/command/ICommand";
 import { ICommandRunOptions } from "../foundations/command/ICommandRunOptions";
 import { leonieConfig } from "../core/config/LeonieConfig";
@@ -91,8 +91,8 @@ export class MediaCommand implements ICommand {
         const embedDescription = `## ${metadata.title}\n` +
             `\`${metadata.genres.join(", ")}\`\n` +
             `### \`${displayedStartDate}\` to \`${displayedEndDate}\`\n` +
-            `\nVolumes: \`${metadata.size.volumes}\`\n` +
-            `Chapters: \`${metadata.size.chapters}\`\n`;
+            `\nVolumes: \`${metadata.size.volumes ?? "Unknown"}\`\n` +
+            `Chapters: \`${metadata.size.chapters ?? "Unknown"}\`\n`;
 
         const metadataEmbed = this.buildAniListEmbed()
             .setURL(metadata.siteUrl)
@@ -107,6 +107,8 @@ export class MediaCommand implements ICommand {
         const animeFetcher = kernel.get("IAnimeFetcher");
         const metadata = await animeFetcher.fetchAnime(mediaTitle);
 
+        console.log(metadata);
+
         const displayedEndDate = metadata.endDate
             ? this.formatDateToShortDate(metadata.endDate)
             : "Not available";
@@ -115,15 +117,15 @@ export class MediaCommand implements ICommand {
 
         let embedDescription = `## ${metadata.title}\n` +
             `\`${metadata.genres.join(", ")}\`\n` +
-            `### \`${displayedStartDate}\` to \`${displayedEndDate}\`\n` +
-            `\nEpisodes: \`${metadata.episodes.amount}\`\n` +
+                `### \`${displayedStartDate}\` to \`${displayedEndDate}\`\n` +
+            `\nEpisodes: \`${metadata.episodes.amount ?? "Unknown"}\`\n` +
             `Episode Duration: \`${metadata.episodes.duration}m\`\n`;
 
         if (metadata.nextAiringEpisode) {
             embedDescription +=
                 `\nNext Episode: \`${metadata.nextAiringEpisode.episode}\`\n` +
-                `Airing at: \`${metadata.episodes.airingAt.toISOString()}\`\n` +
-                `Airing in: \`${this.formatDeltaTime(metadata.episodes.timeUntilAiring)}\`\n`;
+                `Airing at: \`${metadata.nextAiringEpisode.airingAt.toISOString()}\`\n` +
+                `Airing in: \`${this.formatDeltaTime(metadata.nextAiringEpisode.timeUntilAiring)}\`\n`;
         }
 
         const metadataEmbed = this.buildAniListEmbed()
