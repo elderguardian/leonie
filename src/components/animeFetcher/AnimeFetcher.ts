@@ -77,11 +77,12 @@ export class AnimeFetcher implements IAnimeFetcher {
             "Title is unknown";
 
         const startDate = new Date(
-            `${rawMedia.startDate.month}.${rawMedia.startDate.day}.${rawMedia.startDate.year}`
+            `${rawMedia.startDate.month}.${rawMedia.startDate.day ?? 1}.${rawMedia.startDate.year}`
         );
-        const endDate = rawMedia.endDate
-            ? new Date(`${rawMedia.endDate.month}.${rawMedia.endDate.day}.${rawMedia.endDate.year}`)
-            : null;
+
+        const hasEndDate = rawMedia.endDate && rawMedia.endDate.year && rawMedia.endDate.month
+        const endDate = !hasEndDate
+            ? null : new Date(`${rawMedia.endDate.month}.${rawMedia.endDate.day ?? 1}.${rawMedia.endDate.year}`);
 
         return {
             title,
@@ -98,12 +99,12 @@ export class AnimeFetcher implements IAnimeFetcher {
             isAdult: rawMedia.isAdult ?? false,
             siteUrl: rawMedia.siteUrl ?? null,
             episodes: {
-                amount: rawMedia.episodes,
+                amount: rawMedia.episodes ?? "Unknown",
                 duration: rawMedia.duration,
             },
             nextAiringEpisode: rawMedia.nextAiringEpisode
                 ? {
-                    airingAt: new Date(rawMedia.nextAiringEpisode.airingAt),
+                    airingAt: new Date(rawMedia.nextAiringEpisode.airingAt * 1000),
                     timeUntilAiring: rawMedia.nextAiringEpisode.timeUntilAiring,
                     episode: rawMedia.nextAiringEpisode.episode,
                 }
@@ -130,9 +131,10 @@ export class AnimeFetcher implements IAnimeFetcher {
         const startDate = new Date(
             `${rawMedia.startDate.month}.${rawMedia.startDate.day}.${rawMedia.startDate.year}`
         );
-        const endDate = rawMedia.endDate
-            ? new Date(`${rawMedia.endDate.month}.${rawMedia.endDate.day}.${rawMedia.endDate.year}`)
-            : null;
+
+        const hasEndDate = rawMedia.endDate && rawMedia.endDate.year && rawMedia.endDate.month
+        const endDate = !hasEndDate
+            ? null : new Date(`${rawMedia.endDate.month}.${rawMedia.endDate.day ?? 1}.${rawMedia.endDate.year}`);
 
         return {
             title,
