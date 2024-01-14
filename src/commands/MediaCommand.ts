@@ -107,8 +107,6 @@ export class MediaCommand implements ICommand {
         const animeFetcher = kernel.get("IAnimeFetcher");
         const metadata = await animeFetcher.fetchAnime(mediaTitle);
 
-        console.log(metadata);
-
         const displayedEndDate = metadata.endDate
             ? this.formatDateToShortDate(metadata.endDate)
             : "Not available";
