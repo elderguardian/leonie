@@ -1,7 +1,19 @@
-<img src="https://github.com/elderguardian/leonie/assets/129489839/1cedd811-21af-4f26-9299-406dc2ac3fcc" align="right" width="250px">
+<div align="center">
+  <a href="">
+    <img src="https://github.com/elderguardian/leonie/assets/129489839/815f1398-e6c0-403c-804a-b2e8a8dfb4e9" width="150px">
+  </a>
 
-# Leonie
-An awesome Discord bot with a modular architecture, originally designed for a small community. As we value open source, it is now public.
+  <div>
+    <h1>leonie</h1>
+    <p>The ultimate open-source Discord bot</p>
+  </div>
+
+  <div>
+    <a href="https://github.com/elderguardian/leonie#-key-features"><img src="https://img.shields.io/badge/🚀%20Key%20Features-ffffff.svg?style=for-the-badge&labelColor=000000&color=000000" alt="Key Features"></a>
+    <a href="https://github.com/elderguardian/leonie#%EF%B8%8F-development-and-deployment"><img src="https://img.shields.io/badge/🛠️%20Development%20and%20Deployment-ffffff.svg?style=for-the-badge&labelColor=000000&color=000000" alt="Development and Deployment"></a>
+    <a href="https://github.com/elderguardian/leonie#-license"><img src="https://img.shields.io/badge/📜%20License-ffffff.svg?style=for-the-badge&labelColor=000000&color=000000" alt="License"></a>
+  </div>
+</div>
 
 ### 🚀 Key Features
 - Avatar Retrieval: Easily fetch user and server avatars.
