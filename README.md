@@ -7,6 +7,12 @@
     <h1>leonie</h1>
     <p>The ultimate open-source Discord bot</p>
   </div>
+
+  <div>
+    <a href="https://github.com/elderguardian/leonie#-key-features"><img src="https://img.shields.io/badge/🚀%20Key%20Features-ffffff.svg?style=for-the-badge&labelColor=000000&color=000000" alt="Key Features"></a>
+    <a href="https://github.com/elderguardian/leonie#%EF%B8%8F-development-and-deployment"><img src="https://img.shields.io/badge/🛠️%20Development%20and%20Deployment-ffffff.svg?style=for-the-badge&labelColor=000000&color=000000" alt="Development and Deployment"></a>
+    <a href="https://github.com/elderguardian/leonie#-license"><img src="https://img.shields.io/badge/📜%20License-ffffff.svg?style=for-the-badge&labelColor=000000&color=000000" alt="License"></a>
+  </div>
 </div>
 
 ### 🚀 Key Features
