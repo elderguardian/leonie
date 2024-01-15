@@ -2,6 +2,11 @@
   <a href="">
     <img src="https://github.com/elderguardian/leonie/assets/129489839/815f1398-e6c0-403c-804a-b2e8a8dfb4e9" width="150px">
   </a>
+
+  <div>
+    <h1>leonie</h1>
+    <p>The ultimate open-source Discord bot</p>
+  </div>
 </div>
 
 ### 🚀 Key Features
