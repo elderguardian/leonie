@@ -1,7 +1,8 @@
-<img src="https://github.com/elderguardian/leonie/assets/129489839/1cedd811-21af-4f26-9299-406dc2ac3fcc" align="right" width="250px">
-
-# Leonie
-An awesome Discord bot with a modular architecture, originally designed for a small community. As we value open source, it is now public.
+<div align="center">
+  <a href="">
+    <img src="https://github.com/elderguardian/leonie/assets/129489839/815f1398-e6c0-403c-804a-b2e8a8dfb4e9" width="150px">
+  </a>
+</div>
 
 ### 🚀 Key Features
 - Avatar Retrieval: Easily fetch user and server avatars.
