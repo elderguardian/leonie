@@ -8,8 +8,8 @@ import { InteractionHandler } from "../../foundations/interactionHandler/Interac
 import { ActionLoader } from "../../foundations/actionLoader/ActionLoader";
 
 export const kernel: IKernel = new Kernel()
-    .set('IInteractionHandler', () => new InteractionHandler())
-    .set('IActionLoader', () => new ActionLoader())
+    .set("IInteractionHandler", () => new InteractionHandler())
+    .set("IActionLoader", () => new ActionLoader())
     .set("IDiscordFetcher", () => new DiscordFetcher())
     .set("IAnimeFetcher", () => new AnimeFetcher())
     .set("IWeatherFetcher", () => new WeatherFetcher())
