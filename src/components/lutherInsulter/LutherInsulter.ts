@@ -23,10 +23,13 @@ export class LutherInsulter implements ILutherInsulter {
                 page: randomInsult.page,
             }
 
-        } catch (error: any) {
-            throw new Error(`Could not parse insult: ${error.message}`)
-        }
+        } catch (error: unknown) {
+            if (error instanceof Error) {
+                throw new Error(`Could not parse insult: ${error.message}`)
+            }
 
+            throw new Error("An unknown error occurred");
+        }
 
     }
 
