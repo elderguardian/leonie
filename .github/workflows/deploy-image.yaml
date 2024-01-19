@@ -35,6 +35,7 @@ jobs:
           tags: |
             type=ref,event=branch
             type=sha
+            type=sha,event=branch
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v2
@@ -50,6 +51,7 @@ jobs:
             --platform linux/amd64 \
             --push \
             -t ${{ env.REGISTRY }}/${{ github.repository }}:latest \
+            -t ${{ env.REGISTRY }}/${{ github.repository }}:${{ steps.meta.outputs.sha }} \
             .
 
       - name: Build and push Docker image for arm64
@@ -59,4 +61,5 @@ jobs:
             --platform linux/arm64 \
             --push \
             -t ${{ env.REGISTRY }}/${{ github.repository }}:latest-arm64 \
+            -t ${{ env.REGISTRY }}/${{ github.repository }}:${{ steps.meta.outputs.sha }}-arm64 \
             .
