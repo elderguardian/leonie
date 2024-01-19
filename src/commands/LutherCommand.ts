@@ -1,18 +1,26 @@
-import { CommandInteraction, SlashCommandBuilder } from "discord.js";
+import { CommandInteraction, EmbedBuilder, SlashCommandBuilder } from "discord.js";
 import { ICommand } from "../foundations/command/ICommand";
 import { ICommandRunOptions } from "../foundations/command/ICommandRunOptions";
+import { kernel } from "../core/ioc/Container";
+import { leonieConfig } from "../core/config/LeonieConfig";
 
-export class PingCommand implements ICommand {
+export class LutherCommand implements ICommand {
     getMetadata(): SlashCommandBuilder {
         return new SlashCommandBuilder()
-            .setName("ping")
-            .setDescription("Pong!");
+            .setName("luther")
+            .setDescription("Get insulted by Luther");
     }
 
     async run(runOptions: ICommandRunOptions, interaction: CommandInteraction): Promise<void> {
-        const startTime = Date.now();
-        await interaction.reply("Pong!");
-        const endTime = Date.now();
-        await interaction.editReply(`Pong! *${endTime - startTime}ms*`);
+        const insulter = kernel.get("ILutherInsulter");
+        const insult = await insulter.generateInsult();
+
+        const insultEmbed = new EmbedBuilder()
+            .setColor(leonieConfig.embed_color)
+            .setTitle("Random Luther Insult")
+            .setDescription(insult.content)
+            .setFooter({ text: `From ${insult.book} on Page ${insult.page}` });
+
+        await interaction.reply({ embeds: [insultEmbed] });
     }
 }
