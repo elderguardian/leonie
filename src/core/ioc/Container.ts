@@ -7,12 +7,13 @@ import { GithubFetcher } from "../../components/githubFetcher/GithubFetcher";
 import { InteractionHandler } from "../../foundations/interactionHandler/InteractionHandler";
 import { ActionLoader } from "../../foundations/actionLoader/ActionLoader";
 import { LutherInsulter } from "../../components/lutherInsulter/LutherInsulter";
+import { KernelMappings } from "./KernelMappings";
 
 export const kernel: IKernel = new Kernel()
-    .set("IInteractionHandler", () => new InteractionHandler())
-    .set("IActionLoader", () => new ActionLoader())
-    .set("IDiscordFetcher", () => new DiscordFetcher())
-    .set("IAnimeFetcher", () => new AnimeFetcher())
-    .set("IWeatherFetcher", () => new WeatherFetcher())
-    .set("IGitHubFetcher", () => new GithubFetcher())
-    .set("ILutherInsulter", () => new LutherInsulter());
+    .set(KernelMappings.INTERACTION_HANDLER, () => new InteractionHandler())
+    .set(KernelMappings.ACTION_LOADER, () => new ActionLoader())
+    .set(KernelMappings.DISCORD_FETCHER, () => new DiscordFetcher())
+    .set(KernelMappings.ANIME_FETCHER, () => new AnimeFetcher())
+    .set(KernelMappings.WEATHER_FETCHER, () => new WeatherFetcher())
+    .set(KernelMappings.GITHUB_FETCHER, () => new GithubFetcher())
+    .set(KernelMappings.LUTHER_INSULTER, () => new LutherInsulter());
