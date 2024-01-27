@@ -3,6 +3,7 @@ import { ICommand } from "../foundations/command/ICommand";
 import { ICommandRunOptions } from "../foundations/command/ICommandRunOptions";
 import { kernel } from "../core/ioc/Container";
 import { leonieConfig } from "../core/config/LeonieConfig";
+import { KernelMappings } from "../core/ioc/KernelMappings";
 
 export class LutherCommand implements ICommand {
     getMetadata(): SlashCommandBuilder {
@@ -12,7 +13,7 @@ export class LutherCommand implements ICommand {
     }
 
     async run(runOptions: ICommandRunOptions, interaction: CommandInteraction): Promise<void> {
-        const insulter = kernel.get("ILutherInsulter");
+        const insulter = kernel.get(KernelMappings.LUTHER_INSULTER);
         const insult = await insulter.generateInsult();
 
         const insultEmbed = new EmbedBuilder()
