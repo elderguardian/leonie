@@ -8,6 +8,7 @@ import { InteractionHandler } from "../../foundations/interactionHandler/Interac
 import { ActionLoader } from "../../foundations/actionLoader/ActionLoader";
 import { LutherInsulter } from "../../components/lutherInsulter/LutherInsulter";
 import { KernelMappings } from "./KernelMappings";
+import { RuntimeDetector } from "../../components/runtimeDetector/RuntimeDetector";
 
 export const kernel: IKernel = new Kernel()
     .set(KernelMappings.INTERACTION_HANDLER, () => new InteractionHandler())
@@ -16,4 +17,5 @@ export const kernel: IKernel = new Kernel()
     .set(KernelMappings.ANIME_FETCHER, () => new AnimeFetcher())
     .set(KernelMappings.WEATHER_FETCHER, () => new WeatherFetcher())
     .set(KernelMappings.GITHUB_FETCHER, () => new GithubFetcher())
-    .set(KernelMappings.LUTHER_INSULTER, () => new LutherInsulter());
+    .set(KernelMappings.LUTHER_INSULTER, () => new LutherInsulter())
+    .set(KernelMappings.RUNTIME_DETECTOR, () => new RuntimeDetector());
