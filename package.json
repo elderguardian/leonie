@@ -1,6 +1,6 @@
 {
   "name": "leonie",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "A powerful Discord Bot with moderation, anime and other utility commands. ",
   "main": "build/src/index.js",
   "scripts": {
