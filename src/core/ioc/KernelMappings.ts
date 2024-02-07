@@ -6,4 +6,5 @@ export enum KernelMappings {
     WEATHER_FETCHER = "IWeatherFetcher",
     GITHUB_FETCHER = "IGitHubFetcher",
     LUTHER_INSULTER = "ILutherInsulter",
+    RUNTIME_DETECTOR = "IRuntimeDetector",
 }
