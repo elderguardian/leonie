@@ -1,11 +1,12 @@
 import * as dotenv from "dotenv";
-import { Bot } from "./core/bot/Bot";
+import { KernelMappings } from "./core/ioc/KernelMappings";
+import { kernel } from "./core/ioc/Container";
 
 dotenv.config();
 
 async function startBot() {
     try {
-        const bot = new Bot();
+        const bot = kernel.singleton(KernelMappings.BOT);
         await bot.initialize();
         console.log("Started bot successfully.");
     } catch (error: any) {

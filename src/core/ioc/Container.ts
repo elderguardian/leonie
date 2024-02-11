@@ -9,8 +9,10 @@ import { ActionLoader } from "../../foundations/actionLoader/ActionLoader";
 import { LutherInsulter } from "../../components/lutherInsulter/LutherInsulter";
 import { KernelMappings } from "./KernelMappings";
 import { RuntimeDetector } from "../../components/runtimeDetector/RuntimeDetector";
+import { Bot } from "../bot/Bot";
 
 export const kernel: IKernel = new Kernel()
+    .set(KernelMappings.BOT, () => new Bot())
     .set(KernelMappings.INTERACTION_HANDLER, () => new InteractionHandler())
     .set(KernelMappings.ACTION_LOADER, () => new ActionLoader())
     .set(KernelMappings.DISCORD_FETCHER, () => new DiscordFetcher())

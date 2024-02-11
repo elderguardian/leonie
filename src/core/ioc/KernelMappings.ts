@@ -1,4 +1,6 @@
 export enum KernelMappings {
+    BOT = "IBot",
+
     INTERACTION_HANDLER = "IInteractionHandler",
     ACTION_LOADER = "IActionLoader",
     DISCORD_FETCHER = "IDiscordFetcher",
