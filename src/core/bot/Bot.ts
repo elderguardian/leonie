@@ -2,8 +2,9 @@ import { Client, CommandInteraction, Events, IntentsBitField } from "discord.js"
 import { kernel } from "../ioc/Container";
 import process from "process";
 import { ActionLoader } from "../../foundations/actionLoader/ActionLoader";
+import { IBot } from "./IBot";
 
-export class Bot {
+export class Bot implements IBot {
 
     private createClient() {
         return new Client({
@@ -11,8 +12,8 @@ export class Bot {
                 IntentsBitField.Flags.Guilds,
                 IntentsBitField.Flags.GuildMembers,
                 IntentsBitField.Flags.GuildMessages,
-                IntentsBitField.Flags.MessageContent,
-            ],
+                IntentsBitField.Flags.MessageContent
+            ]
         });
     }
 
@@ -30,7 +31,7 @@ export class Bot {
         client.on(Events.InteractionCreate, async interaction => {
             if (!commands) return;
             interactionHandler.handle({ client, commands }, <CommandInteraction>interaction);
-        })
+        });
     }
 
     public async initialize() {
@@ -38,6 +39,6 @@ export class Bot {
         const client = this.createClient();
         await this.handleImportantEvents(client);
         console.log("Logging into Discord...");
-        await client.login(token)
+        await client.login(token);
     }
 }
