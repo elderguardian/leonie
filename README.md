@@ -15,7 +15,10 @@
   </div>
 </div>
 
-### 🚀 Key Features
+### 🚀 I just want to try her
+[You can invite the public instance](https://discord.com/api/oauth2/authorize?client_id=1143573089880387624&permissions=0&scope=bot)
+
+### 🔑 Key Features
 - Avatar Retrieval: Easily fetch user and server avatars.
 - Weather Command: Get real-time weather updates using [wttr.in](https://wttr.in/)
 - Anime and Manga Info: Access [AniList](https://anilist.co/) about anime, manga, and their characters.
