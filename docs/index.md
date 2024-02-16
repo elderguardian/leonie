@@ -12,3 +12,7 @@
 ```bash
 $ echo LEONIE_BOT_TOKEN=your-token >> .env
 ```
+### 2. Deployment
+```bash
+$ npm i && npm run register-commands && npm run dev
+```
