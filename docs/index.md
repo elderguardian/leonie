@@ -6,3 +6,9 @@
 <a href="https://github.com/elderguardian/leonie" target="_blank">
     <img src="https://img.shields.io/badge/👨‍💻%20Repository-ffffff.svg?style=for-the-badge&labelColor=000000&color=000000" alt="Repository">
 </a>
+
+## 😎 Selfhosting
+### 1. Configuration
+```bash
+$ echo LEONIE_BOT_TOKEN=your-token >> .env
+```
