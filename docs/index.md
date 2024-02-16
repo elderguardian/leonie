@@ -27,4 +27,3 @@ services:
 ```
 > [!CAUTION]
 > When using docker, you have to register the commands of your app manually!
-g
