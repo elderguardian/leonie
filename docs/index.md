@@ -16,3 +16,12 @@ $ echo LEONIE_BOT_TOKEN=your-token >> .env
 ```bash
 $ npm i && npm run register-commands && npm run dev
 ```
+
+#### 2.1 Using Docker to deploy
+```yaml
+services:
+  leonie:
+    image: ghcr.io/elderguardian/leonie:latest # Or :latest-arm64
+    volumes:
+      - ./env:/usr/src/app/.env
+```
