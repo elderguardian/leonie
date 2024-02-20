@@ -26,7 +26,7 @@
   },
   "homepage": "https://github.com/elderguardian/leonie#readme",
   "devDependencies": {
-    "dotenv": "^16.4.4",
+    "dotenv": "^16.4.5",
     "nodemon": "^3.0.3",
     "ts-node": "^10.9.2",
     "typescript": "^5.3.3"
