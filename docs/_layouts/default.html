@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ site.title }}</title>
+    <link rel="icon" type="image/x-icon" href="{{ "/assets/img/rounded-small.png" }}">
+    <style>
+        .markdown-body * {
+            border-bottom: none !important;
+        }
+
+        h1::selection, h1:empty::selection, h1 *::selection {
+            background: transparent;
+        }
+
+        h1 b {
+            text-decoration: underline;
+            text-underline-offset: 5px;
+            text-decoration-thickness: 5px;
+            text-decoration-color: #49180e;
+        }
+
+        h1 small {
+            font-size: 12px;
+            font-weight: normal;
+            white-space: nowrap;
+        }
+
+        h1 a {
+            color: #1f1712;
+            text-decoration: none;
+        }
+    </style>
+    <link rel="stylesheet" href="{{ "/assets/css/style.css?v=" | append: site.github.build_revision | relative_url }}">
+</head>
+<body>
+<header class="container-lg px-3 my-5">
+    <h1>
+        {% if page.url != "/" %}
+        <a href="javascript:history.back()">↩️</a>
+        {% endif %}
+        <b>👧🏻 leonie</b>
+        <small>
+            <a href="https://github.com/elderguardian/leonie" target="_blank">
+                The ultimate open-source Discord bot
+            </a>
+        </small>
+    </h1>
+</header>
+<main class="container-lg px-3 my-5 markdown-body">
+    {{ content }}
+</main>
+<footer class="container-lg px-5 my-5">
+    <hr>
+    <small>This site is open source! {% github_edit_link "Edit it on GitHub" %}</small>
+</footer>
+</body>
+</html>
