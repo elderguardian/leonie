@@ -4,4 +4,4 @@ layout: home
 
 #### 📚 Documentation
 
-- [Running (Development/Deployment)](./articles/RUNNING.md)
+- [Running (Development/Deployment)](./articles/running.md)
