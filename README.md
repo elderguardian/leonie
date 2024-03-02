@@ -17,7 +17,7 @@
 - GitHub Integration: View the bot’s repository
   issues ([Learn more](https://blog.kagerou.dev/Integrating_GitHub_into_Leonie))
 
-> Documentation is available [here](documents/README.md)
+> Documentation is available [here](docs/index.md)
 
 ### 📜 License
 
