@@ -24,3 +24,19 @@ L1 and L2 are not important for most features. Similar to how the OSI model abst
 - The command class should be exported as the default export of the file.
 - As the `ICommand` defines, each command should have a `getMetadata` method that returns a `SlashCommandBuilder` object
   provided by the [discord.js](https://discord.js.org/) library.
+
+###### 📜 Example
+
+```ts
+export class PingCommand implements ICommand {
+    getMetadata(): SlashCommandBuilder {
+        return new SlashCommandBuilder()
+            .setName('ping')
+            .setDescription('Replies with Pong!');
+    }
+
+    async run(runOptions: ICommandRunOptions, interaction: CommandInteraction): Promise<void> {
+        // Respond to the interaction
+    }
+}
+```
