@@ -15,3 +15,12 @@ of the previous layer.
 When developing a new command like a Weather command, L3.1 should provide a weather module which is used in a L3.2
 command.
 L1 and L2 are not important for most features. Similar to how the OSI model abstracts stuff into black boxes.
+
+##### 🤖 Command Creation
+
+- Commands are created in the `src/commands` directory.
+- A command is a class implementing the `ICommand` interface provided by L2.
+- The command class should be named after the command it provides, for example `PingCommand` for the `/ping` command.
+- The command class should be exported as the default export of the file.
+- As the `ICommand` defines, each command should have a `getMetadata` method that returns a `SlashCommandBuilder` object
+  provided by the [discord.js](https://discord.js.org/) library.
