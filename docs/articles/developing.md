@@ -40,3 +40,6 @@ export class PingCommand implements ICommand {
     }
 }
 ```
+
+Through the `ICommandRunOptions` object, the command can access state information such as the discord.js client and the
+currently loaded commands. The discord.js `CommandInteraction` object is the interaction that triggered the command.
