@@ -60,3 +60,5 @@ Your module can now be used in the command by asking the DI container for an imp
 const myStaticImplementation = kernel.singleton(KernelMappings.MY_INTERFACE); // Always returns the same instance
 const myImplementation = kernel.singleton(KernelMappings.MY_INTERFACE); // Always creates a new instance
 ```
+
+> Just look at an existing module for reference.
