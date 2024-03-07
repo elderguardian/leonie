@@ -43,3 +43,20 @@ export class PingCommand implements ICommand {
 
 Through the `ICommandRunOptions` object, the command can access state information such as the discord.js client and the
 currently loaded commands. The discord.js `CommandInteraction` object is the interaction that triggered the command.
+
+##### 📦 Dependencies
+
+As described before, a command can rely on a module provided by L3.1. For example, the Weather command could rely on
+a `weatherFetcher`.
+For that new modules can be created in the `src/components` directory. A module should consist of a folder providing
+interfaces and corresponded implementations.
+It is recommended to keep these seperated in a `contract` and `impl` folder. After creating a module the implementations
+can be mapped to the interfaces in the di container.
+Just add your mappings to `src/core/ioc/Container.ts`. Keep in mind that this uses the `KernelMappings` enum and
+requires you to add a new entry to it.
+
+Your module can now be used in the command by asking the DI container for an implementation.
+```ts
+const myStaticImplementation = kernel.singleton(KernelMappings.MY_INTERFACE); // Always returns the same instance
+const myImplementation = kernel.singleton(KernelMappings.MY_INTERFACE); // Always creates a new instance
+```
