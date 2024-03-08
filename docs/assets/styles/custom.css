@@ -1,0 +1,25 @@
+.markdown-body * {
+    border-bottom: none !important;
+}
+
+h1::selection, h1:empty::selection, h1 *::selection {
+    background: transparent;
+}
+
+h1 b {
+    text-decoration: underline;
+    text-underline-offset: 5px;
+    text-decoration-thickness: 5px;
+    text-decoration-color: #49180e;
+}
+
+h1 small {
+    font-size: 12px;
+    font-weight: normal;
+    white-space: nowrap;
+}
+
+h1 a {
+    color: #1f1712;
+    text-decoration: none;
+}
