@@ -22,3 +22,11 @@ services:
     volumes:
       - ./env:/usr/src/app/.env
 ```
+
+After deploying your container, you maybe still need to register the application commands.
+
+```bash
+sudo docker ps # Find out the ID of your container
+sudo docker exec -it <container-id> /bin/bash
+cd /usr/src/app && npm run register-commands
+```
