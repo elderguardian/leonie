@@ -1,3 +1,5 @@
+import { ICocktail } from "./ICocktail";
+
 export interface ICocktailFetcher {
-    fetchCocktails(): Promise<any>;
+    fetchCocktails(): Promise<ICocktail>;
 }
