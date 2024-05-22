@@ -1,5 +1,5 @@
 import { ICocktail } from "./ICocktail";
 
 export interface ICocktailFetcher {
-    fetchCocktails(): Promise<ICocktail>;
+    fetchCocktails(name: string): Promise<ICocktail>;
 }
