@@ -9,4 +9,6 @@ export enum KernelMappings {
     GITHUB_FETCHER = "IGitHubFetcher",
     LUTHER_INSULTER = "ILutherInsulter",
     RUNTIME_DETECTOR = "IRuntimeDetector",
+    MATH_SOLVER = "IMathSolver",
+    COCKTAIL_FETCHER = "ICocktailFetcher",
 }
