@@ -27,9 +27,9 @@
   "homepage": "https://github.com/elderguardian/leonie#readme",
   "devDependencies": {
     "dotenv": "^16.4.5",
-    "nodemon": "^3.1.0",
+    "nodemon": "^3.1.1",
     "ts-node": "^10.9.2",
-    "typescript": "^5.4.4"
+    "typescript": "^5.4.5"
   },
   "dependencies": {
     "discord.js": "14.14.1",
