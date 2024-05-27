@@ -7,7 +7,7 @@ import { KernelMappings } from "../core/ioc/KernelMappings";
 
 export class CocktailCommand implements ICommand {
     getMetadata(): SlashCommandBuilder {
-        return new SlashCommandBuilder()
+        return <SlashCommandBuilder>new SlashCommandBuilder()
             .setName("cocktail")
             .addStringOption((option) => option
                 .setName("query")
