@@ -10,6 +10,8 @@ import { LutherInsulter } from "../../components/lutherInsulter/LutherInsulter";
 import { KernelMappings } from "./KernelMappings";
 import { RuntimeDetector } from "../../components/runtimeDetector/RuntimeDetector";
 import { Bot } from "../bot/Bot";
+import { MathSolver } from "../../components/mathSolver/impl/MathSolver";
+import { CocktailFetcher } from "../../components/cocktailFetcher/impl/CocktailFetcher";
 
 export const kernel: IKernel = new Kernel()
     .set(KernelMappings.BOT, () => new Bot())
@@ -20,4 +22,6 @@ export const kernel: IKernel = new Kernel()
     .set(KernelMappings.WEATHER_FETCHER, () => new WeatherFetcher())
     .set(KernelMappings.GITHUB_FETCHER, () => new GithubFetcher())
     .set(KernelMappings.LUTHER_INSULTER, () => new LutherInsulter())
-    .set(KernelMappings.RUNTIME_DETECTOR, () => new RuntimeDetector());
+    .set(KernelMappings.RUNTIME_DETECTOR, () => new RuntimeDetector())
+    .set(KernelMappings.MATH_SOLVER, () => new MathSolver())
+    .set(KernelMappings.COCKTAIL_FETCHER, () => new CocktailFetcher());
