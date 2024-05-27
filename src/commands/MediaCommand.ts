@@ -8,7 +8,7 @@ import { blacklist_media_command } from "../core/blacklistManager/blacklists";
 
 export class MediaCommand implements ICommand {
     getMetadata(): SlashCommandBuilder {
-        return new SlashCommandBuilder()
+        return <SlashCommandBuilder>new SlashCommandBuilder()
             .addStringOption((option) => option
                 .setName("title")
                 .setDescription("Enter your title query")

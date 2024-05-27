@@ -7,7 +7,7 @@ import { KernelMappings } from "../core/ioc/KernelMappings";
 
 export class MathCommand implements ICommand {
     getMetadata(): SlashCommandBuilder {
-        return new SlashCommandBuilder()
+        return <SlashCommandBuilder>new SlashCommandBuilder()
             .setName("math")
             .addStringOption((option) => option
                 .setName("equation")

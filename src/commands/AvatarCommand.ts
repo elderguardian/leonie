@@ -7,7 +7,7 @@ import { leonieConfig } from "../core/config/LeonieConfig";
 
 export class AvatarCommand implements ICommand {
     getMetadata(): SlashCommandBuilder {
-        return new SlashCommandBuilder()
+        return <SlashCommandBuilder>new SlashCommandBuilder()
             .addUserOption((option) => option
                 .setName("target")
                 .setDescription("Select user.")

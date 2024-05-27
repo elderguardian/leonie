@@ -7,7 +7,7 @@ import { blacklist_weather_command } from "../core/blacklistManager/blacklists";
 
 export class WeatherCommand implements ICommand {
     getMetadata(): SlashCommandBuilder {
-        return new SlashCommandBuilder()
+        return <SlashCommandBuilder>new SlashCommandBuilder()
             .setName("weather")
             .setDescription("Get the weather in different locations")
             .addStringOption((option) => option
