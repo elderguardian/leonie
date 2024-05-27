@@ -25,7 +25,13 @@ export class AvatarCommand implements ICommand {
     async run(runOptions: ICommandRunOptions, interaction: CommandInteraction): Promise<void> {
         await interaction.deferReply();
 
-        const targetUser = interaction.options.getUser("target", true);
+        const targetUser = interaction.options.get("target", true).user;
+
+        if (!targetUser) {
+            await interaction.editReply("Could not find user.");
+            return;
+        }
+
         const scopeObject = interaction.options.get("scope", false);
 
         const scopeEnumerator = scopeObject && scopeObject.value === "global_avatar"
