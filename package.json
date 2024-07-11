@@ -33,6 +33,6 @@
   },
   "dependencies": {
     "discord.js": "14.15.3",
-    "mathjs": "^12.4.2"
+    "mathjs": "^13.0.2"
   }
 }
