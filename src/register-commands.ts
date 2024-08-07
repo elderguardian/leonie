@@ -16,16 +16,21 @@ client.once(Events.ClientReady, async (client) => {
 
     const rest = new REST({ version: "10" }).setToken(process.env.LEONIE_BOT_TOKEN ?? "");
 
-    console.log("Registering command...");
-
     const rawCommandData = commands.map((command) => command.getMetadata().toJSON());
+
+    console.log("Deleting existing commands...");
+    rest.put(Routes.applicationCommands(clientId), { body: [] })
+        .then(() => console.log('Successfully deleted all application commands.'))
+        .catch(console.error);
+
+    console.log("Registering new commands...");
 
     await rest.put(Routes.applicationCommands(clientId), {
         body: rawCommandData,
     });
 
     console.log("Registered application command.");
-    client.destroy();
+    await client.destroy();
 });
 
 client.login(process.env.LEONIE_BOT_TOKEN).then((r) => {
