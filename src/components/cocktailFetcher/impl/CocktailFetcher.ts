@@ -15,6 +15,9 @@ export class CocktailFetcher implements ICocktailFetcher {
             this.cocktails = new Map<string, ICocktail>();
         }
 
+        const cachedCocktail = this.cocktails.get(name);
+        if (cachedCocktail) return cachedCocktail;
+
         const response = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${name}`);
         const data: any = await response.json();
 
