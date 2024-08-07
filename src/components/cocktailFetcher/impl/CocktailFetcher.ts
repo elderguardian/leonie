@@ -9,6 +9,17 @@ export class CocktailFetcher implements ICocktailFetcher {
         this.cocktails = new Map<string, ICocktail>();
     }
 
+    private async fetchWithTimeout(url: string, timeout: number): Promise<Response> {
+        const controller = new AbortController();
+        const id = setTimeout(() => controller.abort(), timeout);
+
+        try {
+            return await fetch(url, { signal: controller.signal });
+        } finally {
+            clearTimeout(id);
+        }
+    }
+
     async fetchCocktails(name: string): Promise<ICocktail> {
 
         if (!this.cocktails) {
@@ -18,7 +29,13 @@ export class CocktailFetcher implements ICocktailFetcher {
         const cachedCocktail = this.cocktails.get(name);
         if (cachedCocktail) return cachedCocktail;
 
-        const response = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${name}`);
+        let response: Response;
+        try {
+            response = await this.fetchWithTimeout(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${name}`, 5000);
+        } catch (error) {
+            throw new Error("Failed to fetch cocktail data.");
+        }
+
         const data: any = await response.json();
 
         if (!data.drinks) {
@@ -29,7 +46,7 @@ export class CocktailFetcher implements ICocktailFetcher {
         const ingredients = this.getIngredients(drink);
         const instructions = drink.strInstructions;
 
-        const cocktail = {
+        const cocktail: ICocktail = {
             name: drink.strDrink,
             ingredients,
             instructions,
@@ -41,8 +58,8 @@ export class CocktailFetcher implements ICocktailFetcher {
         return cocktail;
     }
 
-    private getIngredients(drink: any) {
-        const ingredients = [];
+    private getIngredients(drink: any): string[] {
+        const ingredients: string[] = [];
 
         for (let i = 1; i <= 15; i++) {
             const ingredient = drink[`strIngredient${i}`];
@@ -52,14 +69,20 @@ export class CocktailFetcher implements ICocktailFetcher {
                 break;
             }
 
-            ingredients.push(`${ingredient} ${measure}`);
+            ingredients.push(`${ingredient} ${measure || ''}`.trim());
         }
 
         return ingredients;
     }
 
     async fetchRandomCocktail(): Promise<ICocktail> {
-        const response = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/random.php`);
+        let response: Response;
+        try {
+            response = await this.fetchWithTimeout(`https://www.thecocktaildb.com/api/json/v1/1/random.php`, 5000);
+        } catch (error) {
+            throw new Error("Failed to fetch random cocktail data.");
+        }
+
         const data: any = await response.json();
 
         if (!data.drinks) {
@@ -72,5 +95,4 @@ export class CocktailFetcher implements ICocktailFetcher {
         const cocktail = this.cocktails.get(name);
         return cocktail || await this.fetchCocktails(name);
     }
-
 }
