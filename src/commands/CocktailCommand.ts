@@ -4,6 +4,7 @@ import { ICommandRunOptions } from "../foundations/command/ICommandRunOptions";
 import { kernel } from "../core/ioc/Container";
 import { leonieConfig } from "../core/config/LeonieConfig";
 import { KernelMappings } from "../core/ioc/KernelMappings";
+import { blacklist_weather_command } from "../core/blacklistManager/blacklists";
 
 export class CocktailCommand implements ICommand {
     getMetadata(): SlashCommandBuilder {
@@ -53,6 +54,18 @@ export class CocktailCommand implements ICommand {
     }
 
     async run(runOptions: ICommandRunOptions, interaction: CommandInteraction): Promise<void> {
+        const userIsOnCooldown = blacklist_weather_command.isBlacklisted(interaction.user.id);
+
+        if (userIsOnCooldown) {
+            const cooldownTimeLeft = blacklist_weather_command.getSecondsLeft(interaction.user.id);
+
+            await interaction.reply({
+                ephemeral: true,
+                content: `You are on cooldown! Wait an additional ${cooldownTimeLeft}s.`,
+            });
+            return;
+        }
+
         await interaction.deferReply();
         if (!interaction.isChatInputCommand()) return;
 
