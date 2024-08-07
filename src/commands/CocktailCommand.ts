@@ -78,6 +78,7 @@ export class CocktailCommand implements ICommand {
 
         try {
             await map[subcommand]();
+            blacklist_weather_command.addToBlacklist(interaction.user.id);
         } catch (error: any) {
             await interaction.editReply(`Failed executing: ${error.message}`);
         }
