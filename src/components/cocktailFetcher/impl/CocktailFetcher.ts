@@ -15,6 +15,9 @@ export class CocktailFetcher implements ICocktailFetcher {
             this.cocktails = new Map<string, ICocktail>();
         }
 
+        const cachedCocktail = this.cocktails.get(name);
+        if (cachedCocktail) return cachedCocktail;
+
         const response = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${name}`);
         const data: any = await response.json();
 
@@ -54,4 +57,20 @@ export class CocktailFetcher implements ICocktailFetcher {
 
         return ingredients;
     }
+
+    async fetchRandomCocktail(): Promise<ICocktail> {
+        const response = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/random.php`);
+        const data: any = await response.json();
+
+        if (!data.drinks) {
+            throw new Error("No drinks found.");
+        }
+
+        const drink = data.drinks[0];
+        const name = drink.strDrink;
+
+        const cocktail = this.cocktails.get(name);
+        return cocktail || await this.fetchCocktails(name);
+    }
+
 }
