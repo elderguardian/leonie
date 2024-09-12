@@ -32,7 +32,7 @@
     "typescript": "^5.5.4"
   },
   "dependencies": {
-    "discord.js": "14.15.3",
+    "discord.js": "14.16.2",
     "mathjs": "^13.0.3"
   }
 }
